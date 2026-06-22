@@ -1,0 +1,61 @@
+{
+  "mode": "executed",
+  "retrieval_metrics": {
+    "precision@1": 0.36666666666666664,
+    "recall@1": 0.35,
+    "f1@1": 0.3555555555555555,
+    "ndcg@1": 0.36666666666666664,
+    "precision@3": 0.14444444444444443,
+    "recall@3": 0.4,
+    "f1@3": 0.21,
+    "ndcg@3": 0.3876976584523819,
+    "precision@5": 0.08666666666666667,
+    "recall@5": 0.4,
+    "f1@5": 0.14126984126984127,
+    "ndcg@5": 0.3876976584523819,
+    "precision@8": 0.0625,
+    "recall@8": 0.45,
+    "f1@8": 0.10888888888888888,
+    "ndcg@8": 0.4100867272488403,
+    "mrr": 0.39305555555555555
+  },
+  "generation_metrics": {
+    "exact_match": 0.0,
+    "bleu": 0.005057475731437297,
+    "rouge1": 0.11215461990160162,
+    "rouge2": 0.021052351276301635,
+    "rougeL": 0.08380082505946747,
+    "meteor": 0.14868871147017113,
+    "bertscore_precision": 0.0,
+    "bertscore_recall": 0.0,
+    "bertscore_f1": 0.0
+  },
+  "rag_metrics": {
+    "faithfulness": 0.7666666666666666,
+    "context_precision": 0.17261904761904764,
+    "context_recall": 0.19999999999999998,
+    "answer_relevancy": 0.7833333333333332,
+    "judge_groundedness": 3.9166666666666665,
+    "judge_relevance": 4.333333333333333,
+    "judge_hallucination": 4.75,
+    "judge_completeness": 3.5833333333333335
+  },
+  "judge_retrieval": {
+    "retrieval_quality": 0.3,
+    "reason": "The retrieved abstracts discuss various aspects related to diabetes and its management, including the link between rheumatoid arthritis and diabetes, vitamin D deficiency in Pakistani diabetic patients, HbA1c at onset of type 1 diabetes, combined use of one-hour post-load hyperglycemia with HbA1c for pre-diabetic risk identification, and differences in depression and injection behavior among adults with type 1 diabetes. However, none of these abstracts specifically address 'Life Stages' as a concept (e.g., developmental stages, aging processes, or life-course epidemiology). The focus is primarily on disease mechanisms, biomarkers, and clinical outcomes rather than the progression through different life stages.",
+    "missing_aspects": [
+      "explicit discussion of life stages such as childhood, adolescence, adulthood, and aging in relation to diabetes management or risk factors"
+    ]
+  },
+  "judge_groundedness": {
+    "groundedness": 0.2,
+    "hallucination_risk": 0.9,
+    "relevance": 0.1,
+    "completeness": 0.15,
+    "reason": "The question asks for the content of a specific biomedical abstract regarding 'Life Stages.' However, none of the provided evidence excerpts directly discuss life stages or contain an abstract summarizing findings about life stages. The closest reference ([1]) merely mentions using a 'life stages approach' without detailing any abstract content. Consequently, there is insufficient information to accurately answer the question, leading to low groundedness and high hallucination risk."
+  },
+  "notes": {
+    "phase": "executed",
+    "judge_model": "granite4.1:8b"
+  }
+}

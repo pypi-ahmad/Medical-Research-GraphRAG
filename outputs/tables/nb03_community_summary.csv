@@ -1,0 +1,8 @@
+community_id,size,num_edges,top_entity
+1,6133,538645,patients
+2,4060,260743,expression
+0,3109,190544,qualitative
+3,2110,64982,genes
+4,23,123,low-iodine intake
+6,12,31,atrophy
+5,7,21,RUG

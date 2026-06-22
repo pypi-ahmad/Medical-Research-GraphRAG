@@ -1,0 +1,162 @@
+{
+  "documents": [
+    {
+      "asset_id": "vimg_owid-adult-obesity-united-states",
+      "modality": "image",
+      "source_path": "/home/ahmad/AI/Medical-Research-GraphRAG/data/multimodal/images/owid_adult-obesity_united-states.png",
+      "title": "owid_adult-obesity_united-states",
+      "extracted_text": "**Findings:** The chart illustrates a significant increase in health risk factors over time, specifically showing that adult obesity rates have more than tripled since 1980. There is no evidence of improvement or stabilization; the trend remains strictly upward throughout the entire timeline.\n\n**Measurements/Axis Labels:**\n*   **X-axis:** Labeled \"Year\", spanning from approximately 1980 to late 2023/early 2024 with major ticks every decade (1980, 1990, 2000, 2010, 2020).\n*   **Y-axis:** Labeled \"Adult obesity prevalence (%)\", ranging from roughly 12% to over 40%.\n\n**Legends:** No explicit legend is present. The title \"Adult obesity prevalence (%) - United States\" serves as the identifier for the single data series (blue line with circular markers).\n\n**Subgroup Differences:** None are shown. This appears to be an aggregate dataset representing all adults in the United States, rather than a breakdown by age, gender, or race/ethnicity.\n\n**Trend Direction:** Positive and monotonic increase. The prevalence rises steadily from roughly 13% in the early 1980s to approximately 42-43% at the end of the chart (around late 2023). While the rate of growth appears slightly decelerated in recent years compared to the steeper slope seen between 1985 and 2005, it never flattens or declines.\n\n**Confidence Intervals:** Not displayed. There are no error bars or shaded regions around the line to indicate statistical uncertainty or confidence intervals for the data points.\n\n**Safety Signals:** While not a drug safety alert, clinically relevant evidence is presented regarding public health risk factors. The tripling of obesity prevalence (from ~13% to >40%) represents a major negative signal indicating an escalating burden of disease and associated comorbidities within the US adult population over four decades.",
+      "metadata": {
+        "source_type": "vision_model",
+        "filename": "owid_adult-obesity_united-states.png",
+        "vision_model": "qwen3.5:4b"
+      }
+    },
+    {
+      "asset_id": "vimg_owid-hospital-beds-united-states",
+      "modality": "image",
+      "source_path": "/home/ahmad/AI/Medical-Research-GraphRAG/data/multimodal/images/owid_hospital-beds_united-states.png",
+      "title": "owid_hospital-beds_united-states",
+      "extracted_text": "Title: Hospital beds per 1,000 people - United States\n\nX-axis label: Year (ticks marked at intervals of 1960, 1970, ..., 2020)\nY-axis label: Hospital beds per 1,000 people (scale ranges from roughly 2.5 to just above 9)\n\nTrend direction: Downward / Decreasing. The data shows a consistent decline in hospital bed density over the period shown. It starts at approximately 9.2 beds per 1,000 people around 1963 and drops steadily to about 2.7 beds per 1,000 people by roughly 2023.\n\nMeasurements:\n- ~1965 start point: > 9 beds/1,000 people\n- 1970 mark: ~8 beds/1,000 people\n- 1980 mark: ~6 beds/1,000 people\n- 2000 mark: ~3.5 beds/1,000 people\n- End point (~2023): ~2.7 beds/1,000 people\n\nLegends: None visible (single blue line with markers).\n\nSubgroup differences: Not applicable; the chart displays a single aggregate trend for the United States over time without distinguishing between subgroups like public vs private or urban vs rural.\n\nConfidence intervals: Not provided on the graph.\n\nSafety signals: No explicit safety warnings are present, but the data reflects a significant long-term reduction in healthcare infrastructure capacity (hospital beds) per capita compared to mid-20th century levels.",
+      "metadata": {
+        "source_type": "vision_model",
+        "filename": "owid_hospital-beds_united-states.png",
+        "vision_model": "qwen3.5:4b"
+      }
+    },
+    {
+      "asset_id": "vimg_owid-life-expectancy-united-states",
+      "modality": "image",
+      "source_path": "/home/ahmad/AI/Medical-Research-GraphRAG/data/multimodal/images/owid_life-expectancy_united-states.png",
+      "title": "owid_life-expectancy_united-states",
+      "extracted_text": "Findings: Life expectancy in the United States has shown a long-term upward trajectory from approximately 40 years to nearly 80 years over roughly 135 years (c. 1880\u20132025). There is a distinct dip in life expectancy starting around late 2019/early 2020, followed by a sharp recovery and increase at the very end of the chart's timeline.\n\nMeasurements: The Y-axis measures \"Life expectancy (years)\" ranging from roughly 38 to just under 80 years. The X-axis represents \"Year\" spanning from approximately 1875 to late 2024/early 2025. Data points appear to be plotted annually or in close intervals.\n\nAxis Labels: Title is \"Life expectancy (years) - United States\". X-axis label is \"Year\". Y-axis label is \"Life expectancy (years)\". No legend is present on the chart.\n\nSubgroup Differences: None; this appears to be a single aggregate time series representing national data without distinct subgroup lines (e.g., by gender or age).\n\nTrend Direction: The overall trend direction is positive/upward, indicating improved survival rates over history. However, there are significant fluctuations, including a period of volatility in the 1920s and a sharp decline around 2019-2020 before recovering at the end.\n\nConfidence Intervals: Not provided or visible on this chart.\n\nSafety Signals: The downward trend observed from roughly late 2019 to early 2020 represents a significant safety signal, likely correlating with global health crises (such as pandemics) that temporarily reduced life expectancy averages before the data shows a recovery in subsequent years.",
+      "metadata": {
+        "source_type": "vision_model",
+        "filename": "owid_life-expectancy_united-states.png",
+        "vision_model": "qwen3.5:4b"
+      }
+    },
+    {
+      "asset_id": "vtbl_owid-adult-obesity-latest-top20",
+      "modality": "table",
+      "source_path": "/home/ahmad/AI/Medical-Research-GraphRAG/data/multimodal/tables/owid_adult-obesity_latest_top20.csv",
+      "title": "owid_adult-obesity_latest_top20",
+      "extracted_text": "Biomedical table columns: Entity, Code, Year, Adult obesity prevalence (%)\nRow 1: Entity=American Samoa; Code=ASM; Year=2024; Adult obesity prevalence (%)=75.81229\nRow 2: Entity=Cook Islands; Code=COK; Year=2024; Adult obesity prevalence (%)=72.41809\nRow 3: Entity=Tonga; Code=TON; Year=2024; Adult obesity prevalence (%)=72.26157\nRow 4: Entity=Nauru; Code=NRU; Year=2024; Adult obesity prevalence (%)=71.44844\nRow 5: Entity=Tokelau; Code=TKL; Year=2024; Adult obesity prevalence (%)=70.012\nRow 6: Entity=Niue; Code=NIU; Year=2024; Adult obesity prevalence (%)=66.24636\nRow 7: Entity=Tuvalu; Code=TUV; Year=2024; Adult obesity prevalence (%)=64.66571\nRow 8: Entity=Samoa; Code=WSM; Year=2024; Adult obesity prevalence (%)=63.1695\nRow 9: Entity=French Polynesia; Code=PYF; Year=2024; Adult obesity prevalence (%)=49.503017\nRow 10: Entity=Bahamas; Code=BHS; Year=2024; Adult obesity prevalence (%)=48.412167\nRow 11: Entity=Saint Kitts and Nevis; Code=KNA; Year=2024; Adult obesity prevalence (%)=47.88135\nRow 12: Entity=Micronesia (country); Code=FSM; Year=2024; Adult obesity prevalence (%)=46.823303\nRow 13: Entity=Kiribati; Code=KIR; Year=2024; Adult obesity prevalence (%)=45.300896\nRow 14: Entity=Belize; Code=BLZ; Year=2024; Adult obesity prevalence (%)=43.223587\nRow 15: Entity=Egypt; Code=EGY; Year=2024; Adult obesity prevalence (%)=42.83759\nRow 16: Entity=Qatar; Code=QAT; Year=2024; Adult obesity prevalence (%)=42.354057\nRow 17: Entity=Palau; Code=PLW; Year=2024; Adult obesity prevalence (%)=42.07973\nRow 18: Entity=Puerto Rico; Code=PRI; Year=2024; Adult obesity prevalence (%)=41.857464\nRow 19: Entity=United States; Code=USA; Year=2024; Adult obesity prevalence (%)=41.83032\nRow 20: Entity=Kuwait; Code=KWT; Year=2024; Adult obesity prevalence (%)=41.318832",
+      "metadata": {
+        "source_type": "tabular",
+        "filename": "owid_adult-obesity_latest_top20.csv"
+      }
+    },
+    {
+      "asset_id": "vtbl_owid-diabetes-prevalence-latest-top20",
+      "modality": "table",
+      "source_path": "/home/ahmad/AI/Medical-Research-GraphRAG/data/multimodal/tables/owid_diabetes-prevalence_latest_top20.csv",
+      "title": "owid_diabetes-prevalence_latest_top20",
+      "extracted_text": "Biomedical table columns: Entity, Code, Year, Diabetes prevalence (% of adults 20-79)\nRow 1: Entity=Pakistan; Code=PAK; Year=2024; Diabetes prevalence (% of adults 20-79)=31.4\nRow 2: Entity=Marshall Islands; Code=MHL; Year=2024; Diabetes prevalence (% of adults 20-79)=25.7\nRow 3: Entity=Kuwait; Code=KWT; Year=2024; Diabetes prevalence (% of adults 20-79)=25.6\nRow 4: Entity=Samoa; Code=WSM; Year=2024; Diabetes prevalence (% of adults 20-79)=25.4\nRow 5: Entity=Kiribati; Code=KIR; Year=2024; Diabetes prevalence (% of adults 20-79)=24.6\nRow 6: Entity=Qatar; Code=QAT; Year=2024; Diabetes prevalence (% of adults 20-79)=24.6\nRow 7: Entity=Saudi Arabia; Code=SAU; Year=2024; Diabetes prevalence (% of adults 20-79)=23.1\nRow 8: Entity=French Polynesia; Code=PYF; Year=2024; Diabetes prevalence (% of adults 20-79)=22.8\nRow 9: Entity=Egypt; Code=EGY; Year=2024; Diabetes prevalence (% of adults 20-79)=22.4\nRow 10: Entity=Bahrain; Code=BHR; Year=2024; Diabetes prevalence (% of adults 20-79)=22.1\nRow 11: Entity=New Caledonia; Code=NCL; Year=2024; Diabetes prevalence (% of adults 20-79)=22.0\nRow 12: Entity=Nauru; Code=NRU; Year=2024; Diabetes prevalence (% of adults 20-79)=21.8\nRow 13: Entity=Malaysia; Code=MYS; Year=2024; Diabetes prevalence (% of adults 20-79)=21.1\nRow 14: Entity=United Arab Emirates; Code=ARE; Year=2024; Diabetes prevalence (% of adults 20-79)=20.7\nRow 15: Entity=Jordan; Code=JOR; Year=2024; Diabetes prevalence (% of adults 20-79)=20.5\nRow 16: Entity=Guam; Code=GUM; Year=2024; Diabetes prevalence (% of adults 20-79)=20.3\nRow 17: Entity=Middle East, North Africa, Afghanistan and Pakistan (WB); Code=WB_MENAP; Year=2024; Diabetes prevalence (% of adults 20-79)=20.137278\nRow 18: Entity=Mauritius; Code=MUS; Year=2024; Diabetes prevalence (% of adults 20-79)=20.1\nRow 19: Entity=Vanuatu; Code=VUT; Year=2024; Diabetes prevalence (% of adults 20-79)=19.7\nRow 20: Entity=Tonga; Code=TON; Year=2024; Diabetes prevalence (% of adults 20-79)=19.6",
+      "metadata": {
+        "source_type": "tabular",
+        "filename": "owid_diabetes-prevalence_latest_top20.csv"
+      }
+    },
+    {
+      "asset_id": "vtbl_owid-hospital-beds-latest-top20",
+      "modality": "table",
+      "source_path": "/home/ahmad/AI/Medical-Research-GraphRAG/data/multimodal/tables/owid_hospital-beds_latest_top20.csv",
+      "title": "owid_hospital-beds_latest_top20",
+      "extracted_text": "Biomedical table columns: Entity, Code, Year, Hospital beds per 1,000 people\nRow 1: Entity=Monaco; Code=MCO; Year=2014; Hospital beds per 1,000 people=21.99\nRow 2: Entity=United States Virgin Islands; Code=VIR; Year=1996; Hospital beds per 1,000 people=18.68\nRow 3: Entity=Greenland; Code=GRL; Year=1970; Hospital beds per 1,000 people=14.3534\nRow 4: Entity=South Korea; Code=KOR; Year=2022; Hospital beds per 1,000 people=12.81\nRow 5: Entity=North Korea; Code=PRK; Year=2018; Hospital beds per 1,000 people=12.8\nRow 6: Entity=Japan; Code=JPN; Year=2022; Hospital beds per 1,000 people=12.59\nRow 7: Entity=Channel Islands; Code=OWID_CIS; Year=1981; Hospital beds per 1,000 people=10.5951\nRow 8: Entity=Belarus; Code=BLR; Year=2023; Hospital beds per 1,000 people=9.77\nRow 9: Entity=Mongolia; Code=MNG; Year=2023; Hospital beds per 1,000 people=8.58\nRow 10: Entity=Bulgaria; Code=BGR; Year=2023; Hospital beds per 1,000 people=8.2\nRow 11: Entity=Germany; Code=DEU; Year=2023; Hospital beds per 1,000 people=7.55\nRow 12: Entity=Romania; Code=ROU; Year=2022; Hospital beds per 1,000 people=7.23\nRow 13: Entity=Russia; Code=RUS; Year=2023; Hospital beds per 1,000 people=6.81\nRow 14: Entity=Austria; Code=AUT; Year=2022; Hospital beds per 1,000 people=6.7\nRow 15: Entity=Hungary; Code=HUN; Year=2022; Hospital beds per 1,000 people=6.63\nRow 16: Entity=Czechia; Code=CZE; Year=2022; Hospital beds per 1,000 people=6.54\nRow 17: Entity=Kazakhstan; Code=KAZ; Year=2020; Hospital beds per 1,000 people=6.54\nRow 18: Entity=Barbados; Code=BRB; Year=2023; Hospital beds per 1,000 people=6.4\nRow 19: Entity=Bermuda; Code=BMU; Year=1996; Hospital beds per 1,000 people=6.3\nRow 20: Entity=Ukraine; Code=UKR; Year=2022; Hospital beds per 1,000 people=6.14",
+      "metadata": {
+        "source_type": "tabular",
+        "filename": "owid_hospital-beds_latest_top20.csv"
+      }
+    }
+  ],
+  "chunks": [
+    {
+      "chunk_id": "vimg_owid-adult-obesity-united-states_c0000",
+      "asset_id": "vimg_owid-adult-obesity-united-states",
+      "modality": "image",
+      "chunk_index": 0,
+      "text": "**Findings:** The chart illustrates a significant increase in health risk factors over time, specifically showing that adult obesity rates have more than tripled since 1980. There is no evidence of improvement or stabilization; the trend remains strictly upward throughout the entire timeline.\n\n**Measurements/Axis Labels:**\n*   **X-axis:** Labeled \"Year\", spanning from approximately 1980 to late 2023/early 2024 with major ticks every decade (1980, 1990, 2000, 2010, 2020).\n*   **Y-axis:** Labeled \"Adult obesity prevalence (%)\", ranging from roughly 12% to over 40%.\n\n**Legends:** No explicit legend is present. The title \"Adult obesity prevalence (%) - United States\" serves as the identifier for the single data series (blue line with circular markers).\n\n**Subgroup Differences:** None are shown. This appears to be an aggregate dataset representing all adults in the United States, rather than a breakdown by age, gender, or race/ethnicity.\n\n**Trend Direction:** Positive and monotonic increase. The prevalence rises steadily from roughly 13% in the early 1980s to approximately 42-43% at the end of the chart (around late 2023). While the rate of growth appears slightly decelerated in recent years compared to the steeper slope seen between 1985 and 2005, it never flattens or declines.\n\n**Confidence Intervals:** Not displayed. There are no error bars or shaded regions around the line to indicate statistical uncertainty or confidence intervals for the data points.\n\n**Safety Signals:** While not a drug safety alert, clinically relevant evidence is presented regarding public health risk factors. The tripling of obesity prevalence (from ~13% to >40%) represents a major negative signal indicating an escalating burden of disease and associated comorbidities within the US adult population over four decades.",
+      "metadata": {
+        "title": "owid_adult-obesity_united-states",
+        "source_path": "/home/ahmad/AI/Medical-Research-GraphRAG/data/multimodal/images/owid_adult-obesity_united-states.png",
+        "modality": "image",
+        "source_type": "vision_model",
+        "filename": "owid_adult-obesity_united-states.png",
+        "vision_model": "qwen3.5:4b"
+      }
+    },
+    {
+      "chunk_id": "vimg_owid-hospital-beds-united-states_c0000",
+      "asset_id": "vimg_owid-hospital-beds-united-states",
+      "modality": "image",
+      "chunk_index": 0,
+      "text": "Title: Hospital beds per 1,000 people - United States\n\nX-axis label: Year (ticks marked at intervals of 1960, 1970, ..., 2020)\nY-axis label: Hospital beds per 1,000 people (scale ranges from roughly 2.5 to just above 9)\n\nTrend direction: Downward / Decreasing. The data shows a consistent decline in hospital bed density over the period shown. It starts at approximately 9.2 beds per 1,000 people around 1963 and drops steadily to about 2.7 beds per 1,000 people by roughly 2023.\n\nMeasurements:\n- ~1965 start point: > 9 beds/1,000 people\n- 1970 mark: ~8 beds/1,000 people\n- 1980 mark: ~6 beds/1,000 people\n- 2000 mark: ~3.5 beds/1,000 people\n- End point (~2023): ~2.7 beds/1,000 people\n\nLegends: None visible (single blue line with markers).\n\nSubgroup differences: Not applicable; the chart displays a single aggregate trend for the United States over time without distinguishing between subgroups like public vs private or urban vs rural.\n\nConfidence intervals: Not provided on the graph.\n\nSafety signals: No explicit safety warnings are present, but the data reflects a significant long-term reduction in healthcare infrastructure capacity (hospital beds) per capita compared to mid-20th century levels.",
+      "metadata": {
+        "title": "owid_hospital-beds_united-states",
+        "source_path": "/home/ahmad/AI/Medical-Research-GraphRAG/data/multimodal/images/owid_hospital-beds_united-states.png",
+        "modality": "image",
+        "source_type": "vision_model",
+        "filename": "owid_hospital-beds_united-states.png",
+        "vision_model": "qwen3.5:4b"
+      }
+    },
+    {
+      "chunk_id": "vimg_owid-life-expectancy-united-states_c0000",
+      "asset_id": "vimg_owid-life-expectancy-united-states",
+      "modality": "image",
+      "chunk_index": 0,
+      "text": "Findings: Life expectancy in the United States has shown a long-term upward trajectory from approximately 40 years to nearly 80 years over roughly 135 years (c. 1880\u20132025). There is a distinct dip in life expectancy starting around late 2019/early 2020, followed by a sharp recovery and increase at the very end of the chart's timeline.\n\nMeasurements: The Y-axis measures \"Life expectancy (years)\" ranging from roughly 38 to just under 80 years. The X-axis represents \"Year\" spanning from approximately 1875 to late 2024/early 2025. Data points appear to be plotted annually or in close intervals.\n\nAxis Labels: Title is \"Life expectancy (years) - United States\". X-axis label is \"Year\". Y-axis label is \"Life expectancy (years)\". No legend is present on the chart.\n\nSubgroup Differences: None; this appears to be a single aggregate time series representing national data without distinct subgroup lines (e.g., by gender or age).\n\nTrend Direction: The overall trend direction is positive/upward, indicating improved survival rates over history. However, there are significant fluctuations, including a period of volatility in the 1920s and a sharp decline around 2019-2020 before recovering at the end.\n\nConfidence Intervals: Not provided or visible on this chart.\n\nSafety Signals: The downward trend observed from roughly late 2019 to early 2020 represents a significant safety signal, likely correlating with global health crises (such as pandemics) that temporarily reduced life expectancy averages before the data shows a recovery in subsequent years.",
+      "metadata": {
+        "title": "owid_life-expectancy_united-states",
+        "source_path": "/home/ahmad/AI/Medical-Research-GraphRAG/data/multimodal/images/owid_life-expectancy_united-states.png",
+        "modality": "image",
+        "source_type": "vision_model",
+        "filename": "owid_life-expectancy_united-states.png",
+        "vision_model": "qwen3.5:4b"
+      }
+    },
+    {
+      "chunk_id": "vtbl_owid-adult-obesity-latest-top20_c0000",
+      "asset_id": "vtbl_owid-adult-obesity-latest-top20",
+      "modality": "table",
+      "chunk_index": 0,
+      "text": "Biomedical table columns: Entity, Code, Year, Adult obesity prevalence (%)\nRow 1: Entity=American Samoa; Code=ASM; Year=2024; Adult obesity prevalence (%)=75.81229\nRow 2: Entity=Cook Islands; Code=COK; Year=2024; Adult obesity prevalence (%)=72.41809\nRow 3: Entity=Tonga; Code=TON; Year=2024; Adult obesity prevalence (%)=72.26157\nRow 4: Entity=Nauru; Code=NRU; Year=2024; Adult obesity prevalence (%)=71.44844\nRow 5: Entity=Tokelau; Code=TKL; Year=2024; Adult obesity prevalence (%)=70.012\nRow 6: Entity=Niue; Code=NIU; Year=2024; Adult obesity prevalence (%)=66.24636\nRow 7: Entity=Tuvalu; Code=TUV; Year=2024; Adult obesity prevalence (%)=64.66571\nRow 8: Entity=Samoa; Code=WSM; Year=2024; Adult obesity prevalence (%)=63.1695\nRow 9: Entity=French Polynesia; Code=PYF; Year=2024; Adult obesity prevalence (%)=49.503017\nRow 10: Entity=Bahamas; Code=BHS; Year=2024; Adult obesity prevalence (%)=48.412167\nRow 11: Entity=Saint Kitts and Nevis; Code=KNA; Year=2024; Adult obesity prevalence (%)=47.88135\nRow 12: Entity=Micronesia (country); Code=FSM; Year=2024; Adult obesity prevalence (%)=46.823303\nRow 13: Entity=Kiribati; Code=KIR; Year=2024; Adult obesity prevalence (%)=45.300896\nRow 14: Entity=Belize; Code=BLZ; Year=2024; Adult obesity prevalence (%)=43.223587\nRow 15: Entity=Egypt; Code=EGY; Year=2024; Adult obesity prevalence (%)=42.83759\nRow 16: Entity=Qatar; Code=QAT; Year=2024; Adult obesity prevalence (%)=42.354057\nRow 17: Entity=Palau; Code=PLW; Year=2024; Adult obesity prevalence (%)=42.07973\nRow 18: Entity=Puerto Rico; Code=PRI; Year=2024; Adult obesity prevalence (%)=41.857464\nRow 19: Entity=United States; Code=USA; Year=2024; Adult obesity prevalence (%)=41.83032\nRow 20: Entity=Kuwait; Code=KWT; Year=2024; Adult obesity prevalence (%)=41.318832",
+      "metadata": {
+        "title": "owid_adult-obesity_latest_top20",
+        "source_path": "/home/ahmad/AI/Medical-Research-GraphRAG/data/multimodal/tables/owid_adult-obesity_latest_top20.csv",
+        "modality": "table",
+        "source_type": "tabular",
+        "filename": "owid_adult-obesity_latest_top20.csv"
+      }
+    },
+    {
+      "chunk_id": "vtbl_owid-diabetes-prevalence-latest-top20_c0000",
+      "asset_id": "vtbl_owid-diabetes-prevalence-latest-top20",
+      "modality": "table",
+      "chunk_index": 0,
+      "text": "Biomedical table columns: Entity, Code, Year, Diabetes prevalence (% of adults 20-79)\nRow 1: Entity=Pakistan; Code=PAK; Year=2024; Diabetes prevalence (% of adults 20-79)=31.4\nRow 2: Entity=Marshall Islands; Code=MHL; Year=2024; Diabetes prevalence (% of adults 20-79)=25.7\nRow 3: Entity=Kuwait; Code=KWT; Year=2024; Diabetes prevalence (% of adults 20-79)=25.6\nRow 4: Entity=Samoa; Code=WSM; Year=2024; Diabetes prevalence (% of adults 20-79)=25.4\nRow 5: Entity=Kiribati; Code=KIR; Year=2024; Diabetes prevalence (% of adults 20-79)=24.6\nRow 6: Entity=Qatar; Code=QAT; Year=2024; Diabetes prevalence (% of adults 20-79)=24.6\nRow 7: Entity=Saudi Arabia; Code=SAU; Year=2024; Diabetes prevalence (% of adults 20-79)=23.1\nRow 8: Entity=French Polynesia; Code=PYF; Year=2024; Diabetes prevalence (% of adults 20-79)=22.8\nRow 9: Entity=Egypt; Code=EGY; Year=2024; Diabetes prevalence (% of adults 20-79)=22.4\nRow 10: Entity=Bahrain; Code=BHR; Year=2024; Diabetes prevalence (% of adults 20-79)=22.1\nRow 11: Entity=New Caledonia; Code=NCL; Year=2024; Diabetes prevalence (% of adults 20-79)=22.0\nRow 12: Entity=Nauru; Code=NRU; Year=2024; Diabetes prevalence (% of adults 20-79)=21.8\nRow 13: Entity=Malaysia; Code=MYS; Year=2024; Diabetes prevalence (% of adults 20-79)=21.1\nRow 14: Entity=United Arab Emirates; Code=ARE; Year=2024; Diabetes prevalence (% of adults 20-79)=20.7\nRow 15: Entity=Jordan; Code=JOR; Year=2024; Diabetes prevalence (% of adults 20-79)=20.5\nRow 16: Entity=Guam; Code=GUM; Year=2024; Diabetes prevalence (% of adults 20-79)=20.3\nRow 17: Entity=Middle East, North Africa, Afghanistan and Pakistan (WB); Code=WB_MENAP; Year=2024; Diabetes prevalence (% of adults 20-79)=20.137278\nRow 18: Entity=Mauritius; Code=MUS; Year=2024; Diabetes prevalence (% of adults 20-79)=20.1\nRow 19: Entity=Vanuatu; Code=VUT; Year=2024; Diabetes prevalence (% of adults 20-79)=19.7\nRow 20: Entity=Tonga; Code=TON; Year=2024; Diabetes prevalence (% of adults 20-79)=19.6",
+      "metadata": {
+        "title": "owid_diabetes-prevalence_latest_top20",
+        "source_path": "/home/ahmad/AI/Medical-Research-GraphRAG/data/multimodal/tables/owid_diabetes-prevalence_latest_top20.csv",
+        "modality": "table",
+        "source_type": "tabular",
+        "filename": "owid_diabetes-prevalence_latest_top20.csv"
+      }
+    },
+    {
+      "chunk_id": "vtbl_owid-hospital-beds-latest-top20_c0000",
+      "asset_id": "vtbl_owid-hospital-beds-latest-top20",
+      "modality": "table",
+      "chunk_index": 0,
+      "text": "Biomedical table columns: Entity, Code, Year, Hospital beds per 1,000 people\nRow 1: Entity=Monaco; Code=MCO; Year=2014; Hospital beds per 1,000 people=21.99\nRow 2: Entity=United States Virgin Islands; Code=VIR; Year=1996; Hospital beds per 1,000 people=18.68\nRow 3: Entity=Greenland; Code=GRL; Year=1970; Hospital beds per 1,000 people=14.3534\nRow 4: Entity=South Korea; Code=KOR; Year=2022; Hospital beds per 1,000 people=12.81\nRow 5: Entity=North Korea; Code=PRK; Year=2018; Hospital beds per 1,000 people=12.8\nRow 6: Entity=Japan; Code=JPN; Year=2022; Hospital beds per 1,000 people=12.59\nRow 7: Entity=Channel Islands; Code=OWID_CIS; Year=1981; Hospital beds per 1,000 people=10.5951\nRow 8: Entity=Belarus; Code=BLR; Year=2023; Hospital beds per 1,000 people=9.77\nRow 9: Entity=Mongolia; Code=MNG; Year=2023; Hospital beds per 1,000 people=8.58\nRow 10: Entity=Bulgaria; Code=BGR; Year=2023; Hospital beds per 1,000 people=8.2\nRow 11: Entity=Germany; Code=DEU; Year=2023; Hospital beds per 1,000 people=7.55\nRow 12: Entity=Romania; Code=ROU; Year=2022; Hospital beds per 1,000 people=7.23\nRow 13: Entity=Russia; Code=RUS; Year=2023; Hospital beds per 1,000 people=6.81\nRow 14: Entity=Austria; Code=AUT; Year=2022; Hospital beds per 1,000 people=6.7\nRow 15: Entity=Hungary; Code=HUN; Year=2022; Hospital beds per 1,000 people=6.63\nRow 16: Entity=Czechia; Code=CZE; Year=2022; Hospital beds per 1,000 people=6.54\nRow 17: Entity=Kazakhstan; Code=KAZ; Year=2020; Hospital beds per 1,000 people=6.54\nRow 18: Entity=Barbados; Code=BRB; Year=2023; Hospital beds per 1,000 people=6.4\nRow 19: Entity=Bermuda; Code=BMU; Year=1996; Hospital beds per 1,000 people=6.3\nRow 20: Entity=Ukraine; Code=UKR; Year=2022; Hospital beds per 1,000 people=6.14",
+      "metadata": {
+        "title": "owid_hospital-beds_latest_top20",
+        "source_path": "/home/ahmad/AI/Medical-Research-GraphRAG/data/multimodal/tables/owid_hospital-beds_latest_top20.csv",
+        "modality": "table",
+        "source_type": "tabular",
+        "filename": "owid_hospital-beds_latest_top20.csv"
+      }
+    }
+  ]
+}

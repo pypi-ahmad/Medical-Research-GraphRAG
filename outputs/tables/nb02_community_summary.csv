@@ -1,0 +1,7 @@
+community_id,size,num_edges,top_entity
+0,4809,321857,patients
+1,3984,249474,expression
+5,3844,236468,qualitative
+3,2739,162517,findings
+4,69,744,inherited
+2,9,36,AR

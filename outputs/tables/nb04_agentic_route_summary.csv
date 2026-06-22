@@ -1,0 +1,2 @@
+query,route,retrieval_score,hallucination_score,retries,trace
+What does this corpus report about diabetes and insulin resistance?,graph_traversal,0.85,0.95,0,retrieval -> retrieval_grader -> graph_traversal -> context_expansion -> answer_generation -> hallucination_detection -> final_response

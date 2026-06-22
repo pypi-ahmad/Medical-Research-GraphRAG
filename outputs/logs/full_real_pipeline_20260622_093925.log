@@ -1,0 +1,46 @@
+[2026-06-22 09:39:25] Strict full pipeline run started.
+[2026-06-22 09:39:25] Run log: /home/ahmad/AI/Medical-Research-GraphRAG/outputs/logs/full_real_pipeline_20260622_093925.log
+[2026-06-22 09:39:25] State file: /home/ahmad/AI/Medical-Research-GraphRAG/outputs/run_state/full_real_pipeline.state
+Resolved 276 packages in 11ms
+Checked 259 packages in 31ms
+[2026-06-22 09:39:25] Running step [preflight_ollama], attempt 1/3
+[2026-06-22 09:39:26] Ollama service is already reachable.
+[2026-06-22 09:39:26] Step succeeded: preflight_ollama
+[2026-06-22 09:39:26] Running step [model_qwen3_embedding_4b], attempt 1/3
+[2026-06-22 09:39:26] Model present: qwen3-embedding:4b
+[2026-06-22 09:39:26] Step succeeded: model_qwen3_embedding_4b
+[2026-06-22 09:39:26] Running step [model_granite4_1_8b], attempt 1/3
+[2026-06-22 09:39:26] Model present: granite4.1:8b
+[2026-06-22 09:39:26] Step succeeded: model_granite4_1_8b
+[2026-06-22 09:39:26] Running step [model_glm_ocr], attempt 1/3
+[2026-06-22 09:39:26] Pulling missing model: glm-ocr
+[?2026h[?25l[1Gpulling manifest ⠋ [K[?25h[?2026l[?2026h[?25l[1Gpulling manifest ⠙ [K[?25h[?2026l[?2026h[?25l[1Gpulling manifest ⠹ [K[?25h[?2026l[?2026h[?25l[1Gpulling manifest ⠸ [K[?25h[?2026l[?2026h[?25l[1Gpulling manifest ⠼ [K[?25h[?2026l[?2026h[?25l[1Gpulling manifest ⠴ [K[?25h[?2026l[?2026h[?25l[1Gpulling manifest ⠦ [K[?25h[?2026l[?2026h[?25l[1Gpulling manifest ⠧ [K[?25h[?2026l[?2026h[?25l[1Gpulling manifest ⠇ [K[?25h[?2026l[?2026h[?25l[1Gpulling manifest ⠏ [K[?25h[?2026l[?2026h[?25l[1Gpulling manifest ⠋ [K[?25h[?2026l[?2026h[?25l[1Gpulling manifest ⠙ [K[?25h[?2026l[?2026h[?25l[1Gpulling manifest ⠹ [K[?25h[?2026l[?2026h[?25l[1Gpulling manifest ⠸ [K[?25h[?2026l[?2026h[?25l[1Gpulling manifest ⠼ [K[?25h[?2026l[?2026h[?25l[1Gpulling manifest [K
+pulling 65493e1f85b9: 100% ▕██████████████████▏ 2.2 GB                         [K
+pulling ae40a217c1c4: 100% ▕██████████████████▏   18 B                         [K
+pulling 2865b92467eb: 100% ▕██████████████████▏  398 B                         [K
+verifying sha256 digest [K
+writing manifest [K
+success [K[?25h[?2026l
+[2026-06-22 09:39:27] Step succeeded: model_glm_ocr
+[2026-06-22 09:39:27] Running step [model_qwen3_5_4b], attempt 1/3
+[2026-06-22 09:39:27] Model present: qwen3.5:4b
+[2026-06-22 09:39:27] Step succeeded: model_qwen3_5_4b
+[2026-06-22 09:39:27] Running step [fetch_pmc_assets], attempt 1/3
+2026-06-22 09:39:30 | INFO | Saved multimodal manifest: 8 assets, 0 failures -> /home/ahmad/AI/Medical-Research-GraphRAG/data/multimodal/pmc_asset_manifest.json
+Manifest: /home/ahmad/AI/Medical-Research-GraphRAG/data/multimodal/pmc_asset_manifest.json
+Assets: 8
+Failures: 0
+[2026-06-22 09:39:30] Step succeeded: fetch_pmc_assets
+[2026-06-22 09:39:30] Executing notebook [notebooks/NB01_Data_Exploration.ipynb], attempt 1/3
+[2026-06-22 09:39:50] Notebook succeeded: notebooks/NB01_Data_Exploration.ipynb
+[2026-06-22 09:39:50] Executing notebook [notebooks/NB02_Chroma_GraphRAG.ipynb], attempt 1/3
+[2026-06-22 09:52:56] Notebook succeeded: notebooks/NB02_Chroma_GraphRAG.ipynb
+[2026-06-22 09:52:56] Executing notebook [notebooks/NB03_Pinecone_GraphRAG.ipynb], attempt 1/3
+[2026-06-22 10:03:12] Notebook succeeded: notebooks/NB03_Pinecone_GraphRAG.ipynb
+[2026-06-22 10:03:12] Executing notebook [notebooks/NB04_Agentic_GraphRAG.ipynb], attempt 1/3
+[2026-06-22 10:03:58] Notebook succeeded: notebooks/NB04_Agentic_GraphRAG.ipynb
+[2026-06-22 10:03:58] Executing notebook [notebooks/NB05_Evaluation.ipynb], attempt 1/3
+[2026-06-22 10:20:50] Notebook succeeded: notebooks/NB05_Evaluation.ipynb
+[2026-06-22 10:20:50] Executing notebook [notebooks/NB06_Hybrid_RAG.ipynb], attempt 1/3
+[2026-06-22 10:27:44] Notebook succeeded: notebooks/NB06_Hybrid_RAG.ipynb
+[2026-06-22 10:27:44] Executing notebook [notebooks/NB07_CRAG.ipynb], attempt 1/3

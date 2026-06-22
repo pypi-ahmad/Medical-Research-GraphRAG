@@ -1,0 +1,65 @@
+{
+  "chroma": {
+    "metrics": {
+      "precision@1": 0.2,
+      "recall@1": 0.18333333333333332,
+      "f1@1": 0.1888888888888889,
+      "ndcg@1": 0.2,
+      "precision@3": 0.07777777777777778,
+      "recall@3": 0.2,
+      "f1@3": 0.11,
+      "ndcg@3": 0.1973240263049396,
+      "precision@5": 0.05333333333333333,
+      "recall@5": 0.23333333333333334,
+      "f1@5": 0.08571428571428573,
+      "ndcg@5": 0.2102191198794243,
+      "precision@8": 0.041666666666666664,
+      "recall@8": 0.3,
+      "f1@8": 0.07259259259259258,
+      "ndcg@8": 0.23244134210164652,
+      "mrr": 0.21619047619047618
+    },
+    "latency_summary": {
+      "p50_ms": 5973.135145497508,
+      "p95_ms": 6672.913734344183,
+      "p99_ms": 6773.325430142868
+    }
+  },
+  "pinecone": {
+    "metrics": {
+      "precision@1": 0.06666666666666667,
+      "recall@1": 0.06666666666666667,
+      "f1@1": 0.06666666666666667,
+      "ndcg@1": 0.06666666666666667,
+      "precision@3": 0.08888888888888889,
+      "recall@3": 0.25,
+      "f1@3": 0.13,
+      "ndcg@3": 0.17103099178571526,
+      "precision@5": 0.08,
+      "recall@5": 0.36666666666666664,
+      "f1@5": 0.13015873015873017,
+      "ndcg@5": 0.2164533715582319,
+      "precision@8": 0.07083333333333333,
+      "recall@8": 0.5166666666666667,
+      "f1@8": 0.1237037037037037,
+      "ndcg@8": 0.2721757736880236,
+      "mrr": 0.1878968253968254
+    },
+    "latency_summary": {
+      "p50_ms": 9657.659210992279,
+      "p95_ms": 11888.915450531931,
+      "p99_ms": 14086.928736700795
+    },
+    "cost_proxy": {
+      "query_count": 30,
+      "upsert_count": 5098,
+      "total_vectors": 5098,
+      "namespace_vectors": 5098,
+      "pricing_note": "USD cost varies by Pinecone plan/region; report operation counts and vector footprint as auditable cost drivers."
+    }
+  },
+  "notes": {
+    "historical_outputs_kept": true,
+    "execution_phase_required_for_validation": true
+  }
+}

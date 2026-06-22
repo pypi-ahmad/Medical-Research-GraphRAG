@@ -1,0 +1,31 @@
+# Python environment and caches
+.venv/
+.pytest_cache/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# Local agent/tooling metadata
+.agents/
+.codex/
+
+# Generated/runtime caches
+unsloth_compiled_cache/
+notebooks/unsloth_compiled_cache/
+
+# Local env secrets
+.env
+
+# Large files above GitHub hard limit (100MB)
+graphs/relation_edges.json
+graphs/entity_graph.pkl
+chroma_db/chroma.sqlite3
+outputs/metrics/nb04_agentic_demo.json
+
+# Generated runtime artifacts (kept local, not versioned)
+chroma_db/
+data/processed/chunk_embeddings.npy
+data/processed/medmentions_records.json
+
+# Packaging artifacts
+*.egg-info/

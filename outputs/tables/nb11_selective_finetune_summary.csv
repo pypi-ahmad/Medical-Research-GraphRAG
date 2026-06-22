@@ -1,0 +1,6 @@
+item,value
+stack_ready,True
+train_examples,2500
+eval_examples,300
+run_full_train,True
+adapter_path,/home/ahmad/AI/Medical-Research-GraphRAG/outputs/finetune/adapters/medresearch-lora

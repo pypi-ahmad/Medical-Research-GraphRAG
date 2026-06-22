@@ -1,0 +1,111 @@
+{
+  "source_policy": "Real open biomedical datasets (OWID). No synthetic records.",
+  "created_at_unix": 1782101370.530508,
+  "assets": [
+    {
+      "asset_id": "owidfig_diabetes-prevalence_united-states",
+      "modality": "image",
+      "local_path": "/home/ahmad/AI/Medical-Research-GraphRAG/data/multimodal/images/owid_diabetes-prevalence_united-states.png",
+      "source_url": "https://ourworldindata.org/grapher/diabetes-prevalence.csv",
+      "pmcid": "OWID:diabetes_prevalence",
+      "title": "Diabetes prevalence (% of adults 20-79) - United States",
+      "caption": "Diabetes prevalence (% of adults 20-79) for United States increased from 9.40 in 2011 to 13.70 in 2024.",
+      "question": "What trend does the chart show for diabetes prevalence (% of adults 20-79) in United States?",
+      "reference_answer": "Diabetes prevalence (% of adults 20-79) for United States increased from 9.40 in 2011 to 13.70 in 2024.",
+      "license": "OWID open data (CC BY where applicable)",
+      "retrieved_at_unix": 1782101369.1237988
+    },
+    {
+      "asset_id": "owidfig_diabetes-prevalence_india",
+      "modality": "image",
+      "local_path": "/home/ahmad/AI/Medical-Research-GraphRAG/data/multimodal/images/owid_diabetes-prevalence_india.png",
+      "source_url": "https://ourworldindata.org/grapher/diabetes-prevalence.csv",
+      "pmcid": "OWID:diabetes_prevalence",
+      "title": "Diabetes prevalence (% of adults 20-79) - India",
+      "caption": "Diabetes prevalence (% of adults 20-79) for India increased from 9.00 in 2011 to 10.50 in 2024.",
+      "question": "What trend does the chart show for diabetes prevalence (% of adults 20-79) in India?",
+      "reference_answer": "Diabetes prevalence (% of adults 20-79) for India increased from 9.00 in 2011 to 10.50 in 2024.",
+      "license": "OWID open data (CC BY where applicable)",
+      "retrieved_at_unix": 1782101369.3673663
+    },
+    {
+      "asset_id": "owidfig_adult-obesity_united-states",
+      "modality": "image",
+      "local_path": "/home/ahmad/AI/Medical-Research-GraphRAG/data/multimodal/images/owid_adult-obesity_united-states.png",
+      "source_url": "https://ourworldindata.org/grapher/share-of-adults-defined-as-obese.csv",
+      "pmcid": "OWID:adult_obesity",
+      "title": "Adult obesity prevalence (%) - United States",
+      "caption": "Adult obesity prevalence (%) for United States increased from 11.84 in 1980 to 41.83 in 2024.",
+      "question": "What trend does the chart show for adult obesity prevalence (%) in United States?",
+      "reference_answer": "Adult obesity prevalence (%) for United States increased from 11.84 in 1980 to 41.83 in 2024.",
+      "license": "OWID open data (CC BY where applicable)",
+      "retrieved_at_unix": 1782101369.6173656
+    },
+    {
+      "asset_id": "owidfig_hospital-beds_united-states",
+      "modality": "image",
+      "local_path": "/home/ahmad/AI/Medical-Research-GraphRAG/data/multimodal/images/owid_hospital-beds_united-states.png",
+      "source_url": "https://ourworldindata.org/grapher/hospital-beds-per-1000-people.csv",
+      "pmcid": "OWID:hospital_beds",
+      "title": "Hospital beds per 1,000 people - United States",
+      "caption": "Hospital beds per 1,000 people for United States decreased from 9.20 in 1960 to 2.68 in 2022.",
+      "question": "What trend does the chart show for hospital beds per 1,000 people in United States?",
+      "reference_answer": "Hospital beds per 1,000 people for United States decreased from 9.20 in 1960 to 2.68 in 2022.",
+      "license": "OWID open data (CC BY where applicable)",
+      "retrieved_at_unix": 1782101369.8497233
+    },
+    {
+      "asset_id": "owidfig_life-expectancy_united-states",
+      "modality": "image",
+      "local_path": "/home/ahmad/AI/Medical-Research-GraphRAG/data/multimodal/images/owid_life-expectancy_united-states.png",
+      "source_url": "https://ourworldindata.org/grapher/life-expectancy.csv",
+      "pmcid": "OWID:life_expectancy",
+      "title": "Life expectancy (years) - United States",
+      "caption": "Life expectancy (years) for United States increased from 39.41 in 1880 to 79.30 in 2023.",
+      "question": "What trend does the chart show for life expectancy (years) in United States?",
+      "reference_answer": "Life expectancy (years) for United States increased from 39.41 in 1880 to 79.30 in 2023.",
+      "license": "OWID open data (CC BY where applicable)",
+      "retrieved_at_unix": 1782101370.1616511
+    },
+    {
+      "asset_id": "owidtbl_diabetes-prevalence_top20",
+      "modality": "table",
+      "local_path": "/home/ahmad/AI/Medical-Research-GraphRAG/data/multimodal/tables/owid_diabetes-prevalence_latest_top20.csv",
+      "source_url": "https://ourworldindata.org/grapher/diabetes-prevalence.csv",
+      "pmcid": "OWID:diabetes_prevalence",
+      "title": "Top 20 Diabetes prevalence (% of adults 20-79)",
+      "caption": "Top 20 entities by latest Diabetes prevalence (% of adults 20-79) based on OWID dataset.",
+      "question": "Which entities have the highest latest values for diabetes prevalence (% of adults 20-79)?",
+      "reference_answer": "Entity=Pakistan; Code=PAK; Year=2024; Diabetes prevalence (% of adults 20-79)=31.4",
+      "license": "OWID open data (CC BY where applicable)",
+      "retrieved_at_unix": 1782101370.2589571
+    },
+    {
+      "asset_id": "owidtbl_adult-obesity_top20",
+      "modality": "table",
+      "local_path": "/home/ahmad/AI/Medical-Research-GraphRAG/data/multimodal/tables/owid_adult-obesity_latest_top20.csv",
+      "source_url": "https://ourworldindata.org/grapher/share-of-adults-defined-as-obese.csv",
+      "pmcid": "OWID:adult_obesity",
+      "title": "Top 20 Adult obesity prevalence (%)",
+      "caption": "Top 20 entities by latest Adult obesity prevalence (%) based on OWID dataset.",
+      "question": "Which entities have the highest latest values for adult obesity prevalence (%)?",
+      "reference_answer": "Entity=American Samoa; Code=ASM; Year=2024; Adult obesity prevalence (%)=75.81229",
+      "license": "OWID open data (CC BY where applicable)",
+      "retrieved_at_unix": 1782101370.412319
+    },
+    {
+      "asset_id": "owidtbl_hospital-beds_top20",
+      "modality": "table",
+      "local_path": "/home/ahmad/AI/Medical-Research-GraphRAG/data/multimodal/tables/owid_hospital-beds_latest_top20.csv",
+      "source_url": "https://ourworldindata.org/grapher/hospital-beds-per-1000-people.csv",
+      "pmcid": "OWID:hospital_beds",
+      "title": "Top 20 Hospital beds per 1,000 people",
+      "caption": "Top 20 entities by latest Hospital beds per 1,000 people based on OWID dataset.",
+      "question": "Which entities have the highest latest values for hospital beds per 1,000 people?",
+      "reference_answer": "Entity=Monaco; Code=MCO; Year=2014; Hospital beds per 1,000 people=21.99",
+      "license": "OWID open data (CC BY where applicable)",
+      "retrieved_at_unix": 1782101370.530488
+    }
+  ],
+  "failures": []
+}

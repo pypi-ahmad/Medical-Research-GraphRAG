@@ -1,0 +1,18 @@
+[2026-06-22 10:55:56] Strict full pipeline run started.
+[2026-06-22 10:55:56] Run log: /home/ahmad/AI/Medical-Research-GraphRAG/outputs/logs/full_real_pipeline_20260622_105556.log
+[2026-06-22 10:55:56] State file: /home/ahmad/AI/Medical-Research-GraphRAG/outputs/run_state/full_real_pipeline.state
+Resolved 276 packages in 11ms
+Checked 259 packages in 48ms
+[2026-06-22 10:55:57] Skipping already-completed step: preflight_ollama
+[2026-06-22 10:55:57] Skipping already-completed step: model_qwen3_embedding_4b
+[2026-06-22 10:55:57] Skipping already-completed step: model_granite4_1_8b
+[2026-06-22 10:55:57] Skipping already-completed step: model_glm_ocr
+[2026-06-22 10:55:57] Skipping already-completed step: model_qwen3_5_4b
+[2026-06-22 10:55:57] Skipping already-completed step: fetch_pmc_assets
+[2026-06-22 10:55:57] Skipping notebook (state=done): notebooks/NB01_Data_Exploration.ipynb
+[2026-06-22 10:55:57] Skipping notebook (state=done): notebooks/NB02_Chroma_GraphRAG.ipynb
+[2026-06-22 10:55:57] Skipping notebook (state=done): notebooks/NB03_Pinecone_GraphRAG.ipynb
+[2026-06-22 10:55:57] Skipping notebook (state=done): notebooks/NB04_Agentic_GraphRAG.ipynb
+[2026-06-22 10:55:57] Skipping notebook (state=done): notebooks/NB05_Evaluation.ipynb
+[2026-06-22 10:55:57] Skipping notebook (state=done): notebooks/NB06_Hybrid_RAG.ipynb
+[2026-06-22 10:55:57] Executing notebook [notebooks/NB07_CRAG.ipynb], attempt 1/3

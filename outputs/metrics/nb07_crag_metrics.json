@@ -1,0 +1,86 @@
+{
+  "mode": "executed",
+  "workflow_mermaid": "flowchart TD\n    A[Query] --> B[Hybrid Retrieval]\n    B --> C[Retrieval Grader]\n    C -->|High quality| D[Context Expansion]\n    C -->|Low quality, retries left| E[Query Correction]\n    E --> B\n    C -->|Low quality, retries exhausted| F[Web Fallback]\n    F --> D\n    D --> G[Answer Generation]\n    G --> H[Judge Verification]\n    H -->|Grounded| I[Final Response]\n    H -->|Ungrounded, one retry| F",
+  "retrieval_metrics": {
+    "precision@1": 0.25,
+    "recall@1": 0.1875,
+    "f1@1": 0.20833333333333331,
+    "ndcg@1": 0.25,
+    "precision@3": 0.16666666666666666,
+    "recall@3": 0.3125,
+    "f1@3": 0.21250000000000002,
+    "ndcg@3": 0.3288662191964322,
+    "precision@5": 0.125,
+    "recall@5": 0.375,
+    "f1@5": 0.18452380952380953,
+    "ndcg@5": 0.3313651162258916,
+    "precision@8": 0.078125,
+    "recall@8": 0.375,
+    "f1@8": 0.12777777777777777,
+    "ndcg@8": 0.3313651162258916,
+    "mrr": 0.3125
+  },
+  "generation_metrics": {
+    "exact_match": 0.0,
+    "bleu": 0.0012596921154994925,
+    "rouge1": 0.052748819438638614,
+    "rouge2": 0.007470783540748931,
+    "rougeL": 0.04272658409924829,
+    "meteor": 0.08938002366452374,
+    "bertscore_precision": 0.0,
+    "bertscore_recall": 0.0,
+    "bertscore_f1": 0.0
+  },
+  "rag_metrics": {
+    "faithfulness": 0.8937499999999999,
+    "context_precision": 0.1517857142857143,
+    "context_recall": 0.4,
+    "answer_relevancy": 0.98125,
+    "judge_groundedness": 3.875,
+    "judge_relevance": 4.625,
+    "judge_hallucination": 5.0,
+    "judge_completeness": 3.375
+  },
+  "route_summary_preview": [
+    {
+      "query": "What evidence links diabetes with insulin resistance in this corpus?",
+      "corrected_query": "What evidence links diabetes with insulin resistance in this corpus?",
+      "retrieval_grade": 0.7,
+      "groundedness": 0.9,
+      "hallucination_risk": 0.1,
+      "completeness": 0.8,
+      "correction_attempts": 0,
+      "verify_attempts": 0,
+      "route": "finalize",
+      "trace": "retrieve_hybrid -> grade_retrieval -> context_expansion -> answer_generation -> verify_answer -> finalize"
+    },
+    {
+      "query": "Summarize findings about hypertension risk factors.",
+      "corrected_query": "Summarize findings about hypertension risk factors.",
+      "retrieval_grade": 0.62,
+      "groundedness": 0.78,
+      "hallucination_risk": 0.12,
+      "completeness": 0.68,
+      "correction_attempts": 0,
+      "verify_attempts": 0,
+      "route": "finalize",
+      "trace": "retrieve_hybrid -> grade_retrieval -> context_expansion -> answer_generation -> verify_answer -> finalize"
+    },
+    {
+      "query": "What do retrieved abstracts report about KRAS in pancreatic cancer?",
+      "corrected_query": "What do retrieved abstracts report on the prevalence of KRAS mutations in pancreatic cancer patients, the signaling pathways (such as MAPK/ERK) directly affected by these mutations, and the clinical implications\u2014including treatment response, prognosis, and therapeutic strategies\u2014associated with KRAS mutations in pancreatic cancer?",
+      "retrieval_grade": 0.2,
+      "groundedness": 0.2,
+      "hallucination_risk": 0.9,
+      "completeness": 0.15,
+      "correction_attempts": 2,
+      "verify_attempts": 1,
+      "route": "finalize",
+      "trace": "retrieve_hybrid -> grade_retrieval -> query_correction -> retrieve_hybrid -> grade_retrieval -> query_correction -> retrieve_hybrid -> grade_retrieval -> web_fallback -> context_expansion -> answer_generation -> verify_answer -> web_fallback -> context_expansion -> answer_generation -> verify_answer -> finalize"
+    }
+  ],
+  "notes": {
+    "phase": "executed",
+    "judge_model": "granite4.1:8b"
+  }
+}

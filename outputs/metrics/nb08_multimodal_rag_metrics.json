@@ -1,0 +1,73 @@
+{
+  "mode": "executed",
+  "retrieval_metrics": {
+    "precision@1": 1.0,
+    "recall@1": 1.0,
+    "f1@1": 1.0,
+    "ndcg@1": 1.0,
+    "precision@3": 0.3333333333333333,
+    "recall@3": 1.0,
+    "f1@3": 0.5,
+    "ndcg@3": 1.0,
+    "precision@5": 0.2,
+    "recall@5": 1.0,
+    "f1@5": 0.33333333333333337,
+    "ndcg@5": 1.0,
+    "precision@8": 0.125,
+    "recall@8": 1.0,
+    "f1@8": 0.2222222222222222,
+    "ndcg@8": 1.0,
+    "mrr": 1.0
+  },
+  "generation_metrics": {
+    "exact_match": 0.0,
+    "bleu": 0.018418521025574914,
+    "rouge1": 0.15906925067572084,
+    "rouge2": 0.07591791189721468,
+    "rougeL": 0.1435413003651618,
+    "meteor": 0.26116079453509455,
+    "bertscore_precision": 0.0,
+    "bertscore_recall": 0.0,
+    "bertscore_f1": 0.0
+  },
+  "rag_metrics": {
+    "faithfulness": 0.8875,
+    "context_precision": 0.29166666666666663,
+    "context_recall": 0.475,
+    "answer_relevancy": 0.9375,
+    "judge_groundedness": 4.25,
+    "judge_relevance": 4.75,
+    "judge_hallucination": 5.0,
+    "judge_completeness": 3.75
+  },
+  "judge_retrieval": {
+    "retrieval_quality": 0.3,
+    "reason": "The retrieved context contains tables and rows related to diabetes prevalence in various countries for the year 2024, as well as adult obesity prevalence percentages for several entities also in 2024. However, there is no explicit mention of specific diabetes-related biomarkers (e.g., HbA1c, fasting glucose, insulin levels) or any analytical evidence linking these prevalence data to such biomarkers. The context focuses on prevalence rates and obesity statistics but lacks direct evidence about biomarker measurements.",
+    "missing_aspects": [
+      "Specific diabetes-related biomarker values",
+      "Correlation between prevalence data and biomarker trends",
+      "Temporal changes in biomarker levels"
+    ]
+  },
+  "judge_groundedness": {
+    "groundedness": 0.9,
+    "hallucination_risk": 0.05,
+    "relevance": 0.95,
+    "completeness": 0.8,
+    "reason": "The evidence directly includes a table for the United States showing diabetes prevalence (% of adults 20\u201179) from 2012 to 2024, which clearly demonstrates a decreasing trend (13\u202f% \u2192 11\u202f%). Additional global data on diabetes prevalence are provided but do not affect the U.S. trend assessment. The answer accurately reflects this trend and cites the relevant table rows, making it highly grounded and relevant. Minor incompleteness arises from missing explicit values for 2020 and 2022, yet the overall direction remains unambiguous."
+  },
+  "asset_counts": {
+    "images": 5,
+    "tables": 3,
+    "documents": 8,
+    "chunks": 8,
+    "eval_queries": 8
+  },
+  "notes": {
+    "phase": "executed",
+    "ocr_model": "glm-ocr",
+    "ocr_cli_timeout_seconds": 120,
+    "ocr_cli_allow_fallback": true,
+    "judge_model": "granite4.1:8b"
+  }
+}

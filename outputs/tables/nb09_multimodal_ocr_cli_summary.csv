@@ -1,0 +1,4 @@
+category,precision@1,recall@1,f1@1,ndcg@1,precision@3,recall@3,f1@3,ndcg@3,precision@5,recall@5,f1@5,ndcg@5,precision@8,recall@8,f1@8,ndcg@8,mrr,exact_match,bleu,rouge1,rouge2,rougeL,meteor,bertscore_precision,bertscore_recall,bertscore_f1,faithfulness,context_precision,context_recall,answer_relevancy,judge_groundedness,judge_relevance,judge_hallucination,judge_completeness
+retrieval,1.0,1.0,1.0,1.0,0.3333333333333333,1.0,0.5,1.0,0.2,1.0,0.33333333333333337,1.0,0.125,1.0,0.2222222222222222,1.0,1.0,,,,,,,,,,,,,,,,,
+generation,,,,,,,,,,,,,,,,,,0.0,0.01886775947661829,0.22225885225885228,0.08660038237746863,0.17078144078144078,0.32714475071298804,0.0,0.0,0.0,,,,,,,,
+rag,,,,,,,,,,,,,,,,,,,,,,,,,,,1.0,0.29166666666666663,0.475,1.0,5.0,5.0,5.0,5.0

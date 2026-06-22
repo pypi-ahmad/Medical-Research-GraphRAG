@@ -1,0 +1,6 @@
+{
+  "train_examples": 2500,
+  "eval_examples": 300,
+  "train_jsonl": "/home/ahmad/AI/Medical-Research-GraphRAG/outputs/finetune/datasets/sft_train.jsonl",
+  "eval_jsonl": "/home/ahmad/AI/Medical-Research-GraphRAG/outputs/finetune/datasets/sft_eval.jsonl"
+}

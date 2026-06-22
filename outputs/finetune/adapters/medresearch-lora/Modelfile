@@ -1,0 +1,6 @@
+FROM granite4.1:8b
+ADAPTER /home/ahmad/AI/Medical-Research-GraphRAG/outputs/finetune/adapters/medresearch-lora
+PARAMETER temperature 0.2
+SYSTEM """
+You are a biomedical research assistant. Always ground claims in cited evidence.
+"""

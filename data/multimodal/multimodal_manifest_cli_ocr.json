@@ -1,0 +1,226 @@
+{
+  "documents": [
+    {
+      "asset_id": "img_owid-adult-obesity-united-states",
+      "modality": "image",
+      "source_path": "/home/ahmad/AI/Medical-Research-GraphRAG/data/multimodal/images/owid_adult-obesity_united-states.png",
+      "title": "owid_adult-obesity_united-states",
+      "extracted_text": "Adult obesity prevalence (%)\nYear\n1980 1990 2000 2010 2020\nAdult obesity prevalence (%)\n40 35 30 25 20 15",
+      "metadata": {
+        "source_type": "ocr",
+        "filename": "owid_adult-obesity_united-states.png",
+        "ocr_backend": "ollama_run",
+        "ocr_model": "glm-ocr"
+      }
+    },
+    {
+      "asset_id": "img_owid-diabetes-prevalence-india",
+      "modality": "image",
+      "source_path": "/home/ahmad/AI/Medical-Research-GraphRAG/data/multimodal/images/owid_diabetes-prevalence_india.png",
+      "title": "owid_diabetes-prevalence_india",
+      "extracted_text": "Diabetes prevalence (% of adults 20-79) - India\n\nYear\n9.0\n9.2\n9.4\n9.6\n9.8\n10.0\n10.2\n10.4\nDiabetes prevalence (% of adults 20-79) - India\n\nYear\n9.0\n9.2\n9.4\n9.6\n9.8\n10.0\n10.2\n10.4\n2012\n2014\n2016\n2018\n2020\n2022\n2024",
+      "metadata": {
+        "source_type": "ocr",
+        "filename": "owid_diabetes-prevalence_india.png",
+        "ocr_backend": "ollama_run",
+        "ocr_model": "glm-ocr"
+      }
+    },
+    {
+      "asset_id": "img_owid-diabetes-prevalence-united-states",
+      "modality": "image",
+      "source_path": "/home/ahmad/AI/Medical-Research-GraphRAG/data/multimodal/images/owid_diabetes-prevalence_united-states.png",
+      "title": "owid_diabetes-prevalence_united-states",
+      "extracted_text": "Diabetes prevalence (% of adults 20-79) - United States\n\nYear\n2012 2014 2016 2018 2020 2022 2024\nDiabetes prevalence (% of adults 20-79)\n13\n12\n11\n10",
+      "metadata": {
+        "source_type": "ocr",
+        "filename": "owid_diabetes-prevalence_united-states.png",
+        "ocr_backend": "ollama_run",
+        "ocr_model": "glm-ocr"
+      }
+    },
+    {
+      "asset_id": "img_owid-hospital-beds-united-states",
+      "modality": "image",
+      "source_path": "/home/ahmad/AI/Medical-Research-GraphRAG/data/multimodal/images/owid_hospital-beds_united-states.png",
+      "title": "owid_hospital-beds_united-states",
+      "extracted_text": "Hospital beds per 1,000 people - United States\n\nYear\n\nHospital beds per 1,000 people\n\n9\n8\n7\n6\n5\n4\n3\n1960\n1970\n1980\n1990\n2000\n2010\n2020\n---",
+      "metadata": {
+        "source_type": "ocr",
+        "filename": "owid_hospital-beds_united-states.png",
+        "ocr_backend": "ollama_run",
+        "ocr_model": "glm-ocr"
+      }
+    },
+    {
+      "asset_id": "img_owid-life-expectancy-united-states",
+      "modality": "image",
+      "source_path": "/home/ahmad/AI/Medical-Research-GraphRAG/data/multimodal/images/owid_life-expectancy_united-states.png",
+      "title": "owid_life-expectancy_united-states",
+      "extracted_text": "Life expectancy (years) - United States\n\nLife expectancy (years)\nYear\n1880 1900 1920 1940 1960 1980 2000 2020\n40 50 60 70 80",
+      "metadata": {
+        "source_type": "ocr",
+        "filename": "owid_life-expectancy_united-states.png",
+        "ocr_backend": "ollama_run",
+        "ocr_model": "glm-ocr"
+      }
+    },
+    {
+      "asset_id": "tbl_owid-adult-obesity-latest-top20",
+      "modality": "table",
+      "source_path": "/home/ahmad/AI/Medical-Research-GraphRAG/data/multimodal/tables/owid_adult-obesity_latest_top20.csv",
+      "title": "owid_adult-obesity_latest_top20",
+      "extracted_text": "Biomedical table columns: Entity, Code, Year, Adult obesity prevalence (%)\nRow 1: Entity=American Samoa; Code=ASM; Year=2024; Adult obesity prevalence (%)=75.81229\nRow 2: Entity=Cook Islands; Code=COK; Year=2024; Adult obesity prevalence (%)=72.41809\nRow 3: Entity=Tonga; Code=TON; Year=2024; Adult obesity prevalence (%)=72.26157\nRow 4: Entity=Nauru; Code=NRU; Year=2024; Adult obesity prevalence (%)=71.44844\nRow 5: Entity=Tokelau; Code=TKL; Year=2024; Adult obesity prevalence (%)=70.012\nRow 6: Entity=Niue; Code=NIU; Year=2024; Adult obesity prevalence (%)=66.24636\nRow 7: Entity=Tuvalu; Code=TUV; Year=2024; Adult obesity prevalence (%)=64.66571\nRow 8: Entity=Samoa; Code=WSM; Year=2024; Adult obesity prevalence (%)=63.1695\nRow 9: Entity=French Polynesia; Code=PYF; Year=2024; Adult obesity prevalence (%)=49.503017\nRow 10: Entity=Bahamas; Code=BHS; Year=2024; Adult obesity prevalence (%)=48.412167\nRow 11: Entity=Saint Kitts and Nevis; Code=KNA; Year=2024; Adult obesity prevalence (%)=47.88135\nRow 12: Entity=Micronesia (country); Code=FSM; Year=2024; Adult obesity prevalence (%)=46.823303\nRow 13: Entity=Kiribati; Code=KIR; Year=2024; Adult obesity prevalence (%)=45.300896\nRow 14: Entity=Belize; Code=BLZ; Year=2024; Adult obesity prevalence (%)=43.223587\nRow 15: Entity=Egypt; Code=EGY; Year=2024; Adult obesity prevalence (%)=42.83759\nRow 16: Entity=Qatar; Code=QAT; Year=2024; Adult obesity prevalence (%)=42.354057\nRow 17: Entity=Palau; Code=PLW; Year=2024; Adult obesity prevalence (%)=42.07973\nRow 18: Entity=Puerto Rico; Code=PRI; Year=2024; Adult obesity prevalence (%)=41.857464\nRow 19: Entity=United States; Code=USA; Year=2024; Adult obesity prevalence (%)=41.83032\nRow 20: Entity=Kuwait; Code=KWT; Year=2024; Adult obesity prevalence (%)=41.318832",
+      "metadata": {
+        "source_type": "tabular",
+        "filename": "owid_adult-obesity_latest_top20.csv"
+      }
+    },
+    {
+      "asset_id": "tbl_owid-diabetes-prevalence-latest-top20",
+      "modality": "table",
+      "source_path": "/home/ahmad/AI/Medical-Research-GraphRAG/data/multimodal/tables/owid_diabetes-prevalence_latest_top20.csv",
+      "title": "owid_diabetes-prevalence_latest_top20",
+      "extracted_text": "Biomedical table columns: Entity, Code, Year, Diabetes prevalence (% of adults 20-79)\nRow 1: Entity=Pakistan; Code=PAK; Year=2024; Diabetes prevalence (% of adults 20-79)=31.4\nRow 2: Entity=Marshall Islands; Code=MHL; Year=2024; Diabetes prevalence (% of adults 20-79)=25.7\nRow 3: Entity=Kuwait; Code=KWT; Year=2024; Diabetes prevalence (% of adults 20-79)=25.6\nRow 4: Entity=Samoa; Code=WSM; Year=2024; Diabetes prevalence (% of adults 20-79)=25.4\nRow 5: Entity=Kiribati; Code=KIR; Year=2024; Diabetes prevalence (% of adults 20-79)=24.6\nRow 6: Entity=Qatar; Code=QAT; Year=2024; Diabetes prevalence (% of adults 20-79)=24.6\nRow 7: Entity=Saudi Arabia; Code=SAU; Year=2024; Diabetes prevalence (% of adults 20-79)=23.1\nRow 8: Entity=French Polynesia; Code=PYF; Year=2024; Diabetes prevalence (% of adults 20-79)=22.8\nRow 9: Entity=Egypt; Code=EGY; Year=2024; Diabetes prevalence (% of adults 20-79)=22.4\nRow 10: Entity=Bahrain; Code=BHR; Year=2024; Diabetes prevalence (% of adults 20-79)=22.1\nRow 11: Entity=New Caledonia; Code=NCL; Year=2024; Diabetes prevalence (% of adults 20-79)=22.0\nRow 12: Entity=Nauru; Code=NRU; Year=2024; Diabetes prevalence (% of adults 20-79)=21.8\nRow 13: Entity=Malaysia; Code=MYS; Year=2024; Diabetes prevalence (% of adults 20-79)=21.1\nRow 14: Entity=United Arab Emirates; Code=ARE; Year=2024; Diabetes prevalence (% of adults 20-79)=20.7\nRow 15: Entity=Jordan; Code=JOR; Year=2024; Diabetes prevalence (% of adults 20-79)=20.5\nRow 16: Entity=Guam; Code=GUM; Year=2024; Diabetes prevalence (% of adults 20-79)=20.3\nRow 17: Entity=Middle East, North Africa, Afghanistan and Pakistan (WB); Code=WB_MENAP; Year=2024; Diabetes prevalence (% of adults 20-79)=20.137278\nRow 18: Entity=Mauritius; Code=MUS; Year=2024; Diabetes prevalence (% of adults 20-79)=20.1\nRow 19: Entity=Vanuatu; Code=VUT; Year=2024; Diabetes prevalence (% of adults 20-79)=19.7\nRow 20: Entity=Tonga; Code=TON; Year=2024; Diabetes prevalence (% of adults 20-79)=19.6",
+      "metadata": {
+        "source_type": "tabular",
+        "filename": "owid_diabetes-prevalence_latest_top20.csv"
+      }
+    },
+    {
+      "asset_id": "tbl_owid-hospital-beds-latest-top20",
+      "modality": "table",
+      "source_path": "/home/ahmad/AI/Medical-Research-GraphRAG/data/multimodal/tables/owid_hospital-beds_latest_top20.csv",
+      "title": "owid_hospital-beds_latest_top20",
+      "extracted_text": "Biomedical table columns: Entity, Code, Year, Hospital beds per 1,000 people\nRow 1: Entity=Monaco; Code=MCO; Year=2014; Hospital beds per 1,000 people=21.99\nRow 2: Entity=United States Virgin Islands; Code=VIR; Year=1996; Hospital beds per 1,000 people=18.68\nRow 3: Entity=Greenland; Code=GRL; Year=1970; Hospital beds per 1,000 people=14.3534\nRow 4: Entity=South Korea; Code=KOR; Year=2022; Hospital beds per 1,000 people=12.81\nRow 5: Entity=North Korea; Code=PRK; Year=2018; Hospital beds per 1,000 people=12.8\nRow 6: Entity=Japan; Code=JPN; Year=2022; Hospital beds per 1,000 people=12.59\nRow 7: Entity=Channel Islands; Code=OWID_CIS; Year=1981; Hospital beds per 1,000 people=10.5951\nRow 8: Entity=Belarus; Code=BLR; Year=2023; Hospital beds per 1,000 people=9.77\nRow 9: Entity=Mongolia; Code=MNG; Year=2023; Hospital beds per 1,000 people=8.58\nRow 10: Entity=Bulgaria; Code=BGR; Year=2023; Hospital beds per 1,000 people=8.2\nRow 11: Entity=Germany; Code=DEU; Year=2023; Hospital beds per 1,000 people=7.55\nRow 12: Entity=Romania; Code=ROU; Year=2022; Hospital beds per 1,000 people=7.23\nRow 13: Entity=Russia; Code=RUS; Year=2023; Hospital beds per 1,000 people=6.81\nRow 14: Entity=Austria; Code=AUT; Year=2022; Hospital beds per 1,000 people=6.7\nRow 15: Entity=Hungary; Code=HUN; Year=2022; Hospital beds per 1,000 people=6.63\nRow 16: Entity=Czechia; Code=CZE; Year=2022; Hospital beds per 1,000 people=6.54\nRow 17: Entity=Kazakhstan; Code=KAZ; Year=2020; Hospital beds per 1,000 people=6.54\nRow 18: Entity=Barbados; Code=BRB; Year=2023; Hospital beds per 1,000 people=6.4\nRow 19: Entity=Bermuda; Code=BMU; Year=1996; Hospital beds per 1,000 people=6.3\nRow 20: Entity=Ukraine; Code=UKR; Year=2022; Hospital beds per 1,000 people=6.14",
+      "metadata": {
+        "source_type": "tabular",
+        "filename": "owid_hospital-beds_latest_top20.csv"
+      }
+    }
+  ],
+  "chunks": [
+    {
+      "chunk_id": "img_owid-adult-obesity-united-states_c0000",
+      "asset_id": "img_owid-adult-obesity-united-states",
+      "modality": "image",
+      "chunk_index": 0,
+      "text": "Adult obesity prevalence (%)\nYear\n1980 1990 2000 2010 2020\nAdult obesity prevalence (%)\n40 35 30 25 20 15",
+      "metadata": {
+        "title": "owid_adult-obesity_united-states",
+        "source_path": "/home/ahmad/AI/Medical-Research-GraphRAG/data/multimodal/images/owid_adult-obesity_united-states.png",
+        "modality": "image",
+        "source_type": "ocr",
+        "filename": "owid_adult-obesity_united-states.png",
+        "ocr_backend": "ollama_run",
+        "ocr_model": "glm-ocr"
+      }
+    },
+    {
+      "chunk_id": "img_owid-diabetes-prevalence-india_c0000",
+      "asset_id": "img_owid-diabetes-prevalence-india",
+      "modality": "image",
+      "chunk_index": 0,
+      "text": "Diabetes prevalence (% of adults 20-79) - India\n\nYear\n9.0\n9.2\n9.4\n9.6\n9.8\n10.0\n10.2\n10.4\nDiabetes prevalence (% of adults 20-79) - India\n\nYear\n9.0\n9.2\n9.4\n9.6\n9.8\n10.0\n10.2\n10.4\n2012\n2014\n2016\n2018\n2020\n2022\n2024",
+      "metadata": {
+        "title": "owid_diabetes-prevalence_india",
+        "source_path": "/home/ahmad/AI/Medical-Research-GraphRAG/data/multimodal/images/owid_diabetes-prevalence_india.png",
+        "modality": "image",
+        "source_type": "ocr",
+        "filename": "owid_diabetes-prevalence_india.png",
+        "ocr_backend": "ollama_run",
+        "ocr_model": "glm-ocr"
+      }
+    },
+    {
+      "chunk_id": "img_owid-diabetes-prevalence-united-states_c0000",
+      "asset_id": "img_owid-diabetes-prevalence-united-states",
+      "modality": "image",
+      "chunk_index": 0,
+      "text": "Diabetes prevalence (% of adults 20-79) - United States\n\nYear\n2012 2014 2016 2018 2020 2022 2024\nDiabetes prevalence (% of adults 20-79)\n13\n12\n11\n10",
+      "metadata": {
+        "title": "owid_diabetes-prevalence_united-states",
+        "source_path": "/home/ahmad/AI/Medical-Research-GraphRAG/data/multimodal/images/owid_diabetes-prevalence_united-states.png",
+        "modality": "image",
+        "source_type": "ocr",
+        "filename": "owid_diabetes-prevalence_united-states.png",
+        "ocr_backend": "ollama_run",
+        "ocr_model": "glm-ocr"
+      }
+    },
+    {
+      "chunk_id": "img_owid-hospital-beds-united-states_c0000",
+      "asset_id": "img_owid-hospital-beds-united-states",
+      "modality": "image",
+      "chunk_index": 0,
+      "text": "Hospital beds per 1,000 people - United States\n\nYear\n\nHospital beds per 1,000 people\n\n9\n8\n7\n6\n5\n4\n3\n1960\n1970\n1980\n1990\n2000\n2010\n2020\n---",
+      "metadata": {
+        "title": "owid_hospital-beds_united-states",
+        "source_path": "/home/ahmad/AI/Medical-Research-GraphRAG/data/multimodal/images/owid_hospital-beds_united-states.png",
+        "modality": "image",
+        "source_type": "ocr",
+        "filename": "owid_hospital-beds_united-states.png",
+        "ocr_backend": "ollama_run",
+        "ocr_model": "glm-ocr"
+      }
+    },
+    {
+      "chunk_id": "img_owid-life-expectancy-united-states_c0000",
+      "asset_id": "img_owid-life-expectancy-united-states",
+      "modality": "image",
+      "chunk_index": 0,
+      "text": "Life expectancy (years) - United States\n\nLife expectancy (years)\nYear\n1880 1900 1920 1940 1960 1980 2000 2020\n40 50 60 70 80",
+      "metadata": {
+        "title": "owid_life-expectancy_united-states",
+        "source_path": "/home/ahmad/AI/Medical-Research-GraphRAG/data/multimodal/images/owid_life-expectancy_united-states.png",
+        "modality": "image",
+        "source_type": "ocr",
+        "filename": "owid_life-expectancy_united-states.png",
+        "ocr_backend": "ollama_run",
+        "ocr_model": "glm-ocr"
+      }
+    },
+    {
+      "chunk_id": "tbl_owid-adult-obesity-latest-top20_c0000",
+      "asset_id": "tbl_owid-adult-obesity-latest-top20",
+      "modality": "table",
+      "chunk_index": 0,
+      "text": "Biomedical table columns: Entity, Code, Year, Adult obesity prevalence (%)\nRow 1: Entity=American Samoa; Code=ASM; Year=2024; Adult obesity prevalence (%)=75.81229\nRow 2: Entity=Cook Islands; Code=COK; Year=2024; Adult obesity prevalence (%)=72.41809\nRow 3: Entity=Tonga; Code=TON; Year=2024; Adult obesity prevalence (%)=72.26157\nRow 4: Entity=Nauru; Code=NRU; Year=2024; Adult obesity prevalence (%)=71.44844\nRow 5: Entity=Tokelau; Code=TKL; Year=2024; Adult obesity prevalence (%)=70.012\nRow 6: Entity=Niue; Code=NIU; Year=2024; Adult obesity prevalence (%)=66.24636\nRow 7: Entity=Tuvalu; Code=TUV; Year=2024; Adult obesity prevalence (%)=64.66571\nRow 8: Entity=Samoa; Code=WSM; Year=2024; Adult obesity prevalence (%)=63.1695\nRow 9: Entity=French Polynesia; Code=PYF; Year=2024; Adult obesity prevalence (%)=49.503017\nRow 10: Entity=Bahamas; Code=BHS; Year=2024; Adult obesity prevalence (%)=48.412167\nRow 11: Entity=Saint Kitts and Nevis; Code=KNA; Year=2024; Adult obesity prevalence (%)=47.88135\nRow 12: Entity=Micronesia (country); Code=FSM; Year=2024; Adult obesity prevalence (%)=46.823303\nRow 13: Entity=Kiribati; Code=KIR; Year=2024; Adult obesity prevalence (%)=45.300896\nRow 14: Entity=Belize; Code=BLZ; Year=2024; Adult obesity prevalence (%)=43.223587\nRow 15: Entity=Egypt; Code=EGY; Year=2024; Adult obesity prevalence (%)=42.83759\nRow 16: Entity=Qatar; Code=QAT; Year=2024; Adult obesity prevalence (%)=42.354057\nRow 17: Entity=Palau; Code=PLW; Year=2024; Adult obesity prevalence (%)=42.07973\nRow 18: Entity=Puerto Rico; Code=PRI; Year=2024; Adult obesity prevalence (%)=41.857464\nRow 19: Entity=United States; Code=USA; Year=2024; Adult obesity prevalence (%)=41.83032\nRow 20: Entity=Kuwait; Code=KWT; Year=2024; Adult obesity prevalence (%)=41.318832",
+      "metadata": {
+        "title": "owid_adult-obesity_latest_top20",
+        "source_path": "/home/ahmad/AI/Medical-Research-GraphRAG/data/multimodal/tables/owid_adult-obesity_latest_top20.csv",
+        "modality": "table",
+        "source_type": "tabular",
+        "filename": "owid_adult-obesity_latest_top20.csv"
+      }
+    },
+    {
+      "chunk_id": "tbl_owid-diabetes-prevalence-latest-top20_c0000",
+      "asset_id": "tbl_owid-diabetes-prevalence-latest-top20",
+      "modality": "table",
+      "chunk_index": 0,
+      "text": "Biomedical table columns: Entity, Code, Year, Diabetes prevalence (% of adults 20-79)\nRow 1: Entity=Pakistan; Code=PAK; Year=2024; Diabetes prevalence (% of adults 20-79)=31.4\nRow 2: Entity=Marshall Islands; Code=MHL; Year=2024; Diabetes prevalence (% of adults 20-79)=25.7\nRow 3: Entity=Kuwait; Code=KWT; Year=2024; Diabetes prevalence (% of adults 20-79)=25.6\nRow 4: Entity=Samoa; Code=WSM; Year=2024; Diabetes prevalence (% of adults 20-79)=25.4\nRow 5: Entity=Kiribati; Code=KIR; Year=2024; Diabetes prevalence (% of adults 20-79)=24.6\nRow 6: Entity=Qatar; Code=QAT; Year=2024; Diabetes prevalence (% of adults 20-79)=24.6\nRow 7: Entity=Saudi Arabia; Code=SAU; Year=2024; Diabetes prevalence (% of adults 20-79)=23.1\nRow 8: Entity=French Polynesia; Code=PYF; Year=2024; Diabetes prevalence (% of adults 20-79)=22.8\nRow 9: Entity=Egypt; Code=EGY; Year=2024; Diabetes prevalence (% of adults 20-79)=22.4\nRow 10: Entity=Bahrain; Code=BHR; Year=2024; Diabetes prevalence (% of adults 20-79)=22.1\nRow 11: Entity=New Caledonia; Code=NCL; Year=2024; Diabetes prevalence (% of adults 20-79)=22.0\nRow 12: Entity=Nauru; Code=NRU; Year=2024; Diabetes prevalence (% of adults 20-79)=21.8\nRow 13: Entity=Malaysia; Code=MYS; Year=2024; Diabetes prevalence (% of adults 20-79)=21.1\nRow 14: Entity=United Arab Emirates; Code=ARE; Year=2024; Diabetes prevalence (% of adults 20-79)=20.7\nRow 15: Entity=Jordan; Code=JOR; Year=2024; Diabetes prevalence (% of adults 20-79)=20.5\nRow 16: Entity=Guam; Code=GUM; Year=2024; Diabetes prevalence (% of adults 20-79)=20.3\nRow 17: Entity=Middle East, North Africa, Afghanistan and Pakistan (WB); Code=WB_MENAP; Year=2024; Diabetes prevalence (% of adults 20-79)=20.137278\nRow 18: Entity=Mauritius; Code=MUS; Year=2024; Diabetes prevalence (% of adults 20-79)=20.1\nRow 19: Entity=Vanuatu; Code=VUT; Year=2024; Diabetes prevalence (% of adults 20-79)=19.7\nRow 20: Entity=Tonga; Code=TON; Year=2024; Diabetes prevalence (% of adults 20-79)=19.6",
+      "metadata": {
+        "title": "owid_diabetes-prevalence_latest_top20",
+        "source_path": "/home/ahmad/AI/Medical-Research-GraphRAG/data/multimodal/tables/owid_diabetes-prevalence_latest_top20.csv",
+        "modality": "table",
+        "source_type": "tabular",
+        "filename": "owid_diabetes-prevalence_latest_top20.csv"
+      }
+    },
+    {
+      "chunk_id": "tbl_owid-hospital-beds-latest-top20_c0000",
+      "asset_id": "tbl_owid-hospital-beds-latest-top20",
+      "modality": "table",
+      "chunk_index": 0,
+      "text": "Biomedical table columns: Entity, Code, Year, Hospital beds per 1,000 people\nRow 1: Entity=Monaco; Code=MCO; Year=2014; Hospital beds per 1,000 people=21.99\nRow 2: Entity=United States Virgin Islands; Code=VIR; Year=1996; Hospital beds per 1,000 people=18.68\nRow 3: Entity=Greenland; Code=GRL; Year=1970; Hospital beds per 1,000 people=14.3534\nRow 4: Entity=South Korea; Code=KOR; Year=2022; Hospital beds per 1,000 people=12.81\nRow 5: Entity=North Korea; Code=PRK; Year=2018; Hospital beds per 1,000 people=12.8\nRow 6: Entity=Japan; Code=JPN; Year=2022; Hospital beds per 1,000 people=12.59\nRow 7: Entity=Channel Islands; Code=OWID_CIS; Year=1981; Hospital beds per 1,000 people=10.5951\nRow 8: Entity=Belarus; Code=BLR; Year=2023; Hospital beds per 1,000 people=9.77\nRow 9: Entity=Mongolia; Code=MNG; Year=2023; Hospital beds per 1,000 people=8.58\nRow 10: Entity=Bulgaria; Code=BGR; Year=2023; Hospital beds per 1,000 people=8.2\nRow 11: Entity=Germany; Code=DEU; Year=2023; Hospital beds per 1,000 people=7.55\nRow 12: Entity=Romania; Code=ROU; Year=2022; Hospital beds per 1,000 people=7.23\nRow 13: Entity=Russia; Code=RUS; Year=2023; Hospital beds per 1,000 people=6.81\nRow 14: Entity=Austria; Code=AUT; Year=2022; Hospital beds per 1,000 people=6.7\nRow 15: Entity=Hungary; Code=HUN; Year=2022; Hospital beds per 1,000 people=6.63\nRow 16: Entity=Czechia; Code=CZE; Year=2022; Hospital beds per 1,000 people=6.54\nRow 17: Entity=Kazakhstan; Code=KAZ; Year=2020; Hospital beds per 1,000 people=6.54\nRow 18: Entity=Barbados; Code=BRB; Year=2023; Hospital beds per 1,000 people=6.4\nRow 19: Entity=Bermuda; Code=BMU; Year=1996; Hospital beds per 1,000 people=6.3\nRow 20: Entity=Ukraine; Code=UKR; Year=2022; Hospital beds per 1,000 people=6.14",
+      "metadata": {
+        "title": "owid_hospital-beds_latest_top20",
+        "source_path": "/home/ahmad/AI/Medical-Research-GraphRAG/data/multimodal/tables/owid_hospital-beds_latest_top20.csv",
+        "modality": "table",
+        "source_type": "tabular",
+        "filename": "owid_hospital-beds_latest_top20.csv"
+      }
+    }
+  ]
+}

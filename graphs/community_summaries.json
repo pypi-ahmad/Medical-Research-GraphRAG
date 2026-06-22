@@ -1,0 +1,458 @@
+[
+  {
+    "community_id": 0,
+    "size": 4809,
+    "num_edges": 321857,
+    "top_entities": [
+      {
+        "concept_id": "C0030705",
+        "label": "patients",
+        "centrality": 0.8928868552412645,
+        "frequency": 1653
+      },
+      {
+        "concept_id": "C2603343",
+        "label": "study",
+        "centrality": 0.6977953410981698,
+        "frequency": 1445
+      },
+      {
+        "concept_id": "C0087111",
+        "label": "treatment",
+        "centrality": 0.6116888519134775,
+        "frequency": 838
+      },
+      {
+        "concept_id": "C0220825",
+        "label": "evaluated",
+        "centrality": 0.579450915141431,
+        "frequency": 634
+      },
+      {
+        "concept_id": "C0332281",
+        "label": "associated with",
+        "centrality": 0.5765391014975042,
+        "frequency": 811
+      },
+      {
+        "concept_id": "C0001779",
+        "label": "age",
+        "centrality": 0.5665557404326124,
+        "frequency": 548
+      },
+      {
+        "concept_id": "C0936012",
+        "label": "analysis",
+        "centrality": 0.5324459234608985,
+        "frequency": 861
+      },
+      {
+        "concept_id": "C1274040",
+        "label": "results",
+        "centrality": 0.5205906821963394,
+        "frequency": 737
+      },
+      {
+        "concept_id": "C0439234",
+        "label": "years",
+        "centrality": 0.5172628951747088,
+        "frequency": 483
+      },
+      {
+        "concept_id": "C1707455",
+        "label": "compared",
+        "centrality": 0.5112312811980033,
+        "frequency": 623
+      },
+      {
+        "concept_id": "C1511726",
+        "label": "data",
+        "centrality": 0.5103993344425957,
+        "frequency": 740
+      },
+      {
+        "concept_id": "C0205250",
+        "label": "higher",
+        "centrality": 0.4394758735440932,
+        "frequency": 547
+      }
+    ]
+  },
+  {
+    "community_id": 1,
+    "size": 3984,
+    "num_edges": 249474,
+    "top_entities": [
+      {
+        "concept_id": "C1171362",
+        "label": "expression",
+        "centrality": 0.6276675872457946,
+        "frequency": 362
+      },
+      {
+        "concept_id": "C0205263",
+        "label": "induced",
+        "centrality": 0.6126035651518955,
+        "frequency": 409
+      },
+      {
+        "concept_id": "C0007634",
+        "label": "cells",
+        "centrality": 0.5960331408486066,
+        "frequency": 426
+      },
+      {
+        "concept_id": "C0205217",
+        "label": "increased",
+        "centrality": 0.552096409741401,
+        "frequency": 612
+      },
+      {
+        "concept_id": "C0086418",
+        "label": "human",
+        "centrality": 0.535525985438112,
+        "frequency": 437
+      },
+      {
+        "concept_id": "C0441889",
+        "label": "levels",
+        "centrality": 0.5149384885764499,
+        "frequency": 554
+      },
+      {
+        "concept_id": "C1280500",
+        "label": "effect",
+        "centrality": 0.5139342204368567,
+        "frequency": 617
+      },
+      {
+        "concept_id": "C1292732",
+        "label": "investigated",
+        "centrality": 0.49811699723826264,
+        "frequency": 599
+      },
+      {
+        "concept_id": "C0392756",
+        "label": "reduced",
+        "centrality": 0.4880743158423299,
+        "frequency": 520
+      },
+      {
+        "concept_id": "C0441712",
+        "label": "mechanisms",
+        "centrality": 0.4848104443886518,
+        "frequency": 336
+      },
+      {
+        "concept_id": "C0017262",
+        "label": "expression",
+        "centrality": 0.47326136078332914,
+        "frequency": 284
+      },
+      {
+        "concept_id": "C0033684",
+        "label": "proteins",
+        "centrality": 0.4579462716545318,
+        "frequency": 310
+      }
+    ]
+  },
+  {
+    "community_id": 5,
+    "size": 3844,
+    "num_edges": 236468,
+    "top_entities": [
+      {
+        "concept_id": "C0205556",
+        "label": "qualitative",
+        "centrality": 0.5833983866770752,
+        "frequency": 664
+      },
+      {
+        "concept_id": "C0205245",
+        "label": "functional",
+        "centrality": 0.5386416861826698,
+        "frequency": 538
+      },
+      {
+        "concept_id": "C0392762",
+        "label": "quantitative",
+        "centrality": 0.5136612021857924,
+        "frequency": 541
+      },
+      {
+        "concept_id": "C1705242",
+        "label": "different",
+        "centrality": 0.4655217278168098,
+        "frequency": 450
+      },
+      {
+        "concept_id": "C1254362",
+        "label": "spatial",
+        "centrality": 0.4246682279469165,
+        "frequency": 290
+      },
+      {
+        "concept_id": "C0392747",
+        "label": "changes",
+        "centrality": 0.40879521207390057,
+        "frequency": 425
+      },
+      {
+        "concept_id": "C1880022",
+        "label": "characterized",
+        "centrality": 0.4059328649492584,
+        "frequency": 229
+      },
+      {
+        "concept_id": "C0205396",
+        "label": "identified",
+        "centrality": 0.38953942232630756,
+        "frequency": 395
+      },
+      {
+        "concept_id": "C1705920",
+        "label": "species",
+        "centrality": 0.3793911007025761,
+        "frequency": 182
+      },
+      {
+        "concept_id": "C1446561",
+        "label": "concentration",
+        "centrality": 0.3765287535779339,
+        "frequency": 209
+      },
+      {
+        "concept_id": "C0022885",
+        "label": "tests",
+        "centrality": 0.3580536039552433,
+        "frequency": 241
+      },
+      {
+        "concept_id": "C1522240",
+        "label": "process",
+        "centrality": 0.3533697632058288,
+        "frequency": 216
+      }
+    ]
+  },
+  {
+    "community_id": 3,
+    "size": 2739,
+    "num_edges": 162517,
+    "top_entities": [
+      {
+        "concept_id": "C0243095",
+        "label": "findings",
+        "centrality": 0.6906501095690285,
+        "frequency": 1084
+      },
+      {
+        "concept_id": "C0679646",
+        "label": "participants",
+        "centrality": 0.5620891161431703,
+        "frequency": 310
+      },
+      {
+        "concept_id": "C0282574",
+        "label": "Embase",
+        "centrality": 0.49123447772096424,
+        "frequency": 394
+      },
+      {
+        "concept_id": "C0035168",
+        "label": "research",
+        "centrality": 0.45763330898466037,
+        "frequency": 230
+      },
+      {
+        "concept_id": "C0027361",
+        "label": "people",
+        "centrality": 0.45288531775018265,
+        "frequency": 224
+      },
+      {
+        "concept_id": "C3887511",
+        "label": "evidence",
+        "centrality": 0.4178232286340395,
+        "frequency": 272
+      },
+      {
+        "concept_id": "C1527148",
+        "label": "development",
+        "centrality": 0.4035792549306063,
+        "frequency": 307
+      },
+      {
+        "concept_id": "C4049986",
+        "label": "impact",
+        "centrality": 0.4024835646457268,
+        "frequency": 243
+      },
+      {
+        "concept_id": "C0018684",
+        "label": "health",
+        "centrality": 0.402118334550767,
+        "frequency": 167
+      },
+      {
+        "concept_id": "C1521761",
+        "label": "factors",
+        "centrality": 0.3995617238860482,
+        "frequency": 273
+      },
+      {
+        "concept_id": "C1533716",
+        "label": "information",
+        "centrality": 0.38604821037253473,
+        "frequency": 192
+      },
+      {
+        "concept_id": "C0040223",
+        "label": "time",
+        "centrality": 0.3754565376186998,
+        "frequency": 291
+      }
+    ]
+  },
+  {
+    "community_id": 4,
+    "size": 69,
+    "num_edges": 744,
+    "top_entities": [
+      {
+        "concept_id": "C0439660",
+        "label": "inherited",
+        "centrality": 0.7205882352941176,
+        "frequency": 18
+      },
+      {
+        "concept_id": "C0011334",
+        "label": "caries",
+        "centrality": 0.45588235294117646,
+        "frequency": 16
+      },
+      {
+        "concept_id": "C0031090",
+        "label": "periodontal disease",
+        "centrality": 0.45588235294117646,
+        "frequency": 8
+      },
+      {
+        "concept_id": "C2219488",
+        "label": "salivary characteristics",
+        "centrality": 0.45588235294117646,
+        "frequency": 2
+      },
+      {
+        "concept_id": "C1327458",
+        "label": "immune regulation",
+        "centrality": 0.45588235294117646,
+        "frequency": 5
+      },
+      {
+        "concept_id": "C1412375",
+        "label": "AMBN",
+        "centrality": 0.45588235294117646,
+        "frequency": 2
+      },
+      {
+        "concept_id": "C1412382",
+        "label": "AMELX",
+        "centrality": 0.45588235294117646,
+        "frequency": 2
+      },
+      {
+        "concept_id": "C0059090",
+        "label": "TUFT",
+        "centrality": 0.45588235294117646,
+        "frequency": 2
+      },
+      {
+        "concept_id": "C1412495",
+        "label": "AQP5",
+        "centrality": 0.45588235294117646,
+        "frequency": 2
+      },
+      {
+        "concept_id": "C1417208",
+        "label": "MMP20",
+        "centrality": 0.45588235294117646,
+        "frequency": 2
+      },
+      {
+        "concept_id": "C1416675",
+        "label": "KLK4",
+        "centrality": 0.45588235294117646,
+        "frequency": 2
+      },
+      {
+        "concept_id": "C0016483",
+        "label": "dietary preferences",
+        "centrality": 0.45588235294117646,
+        "frequency": 3
+      }
+    ]
+  },
+  {
+    "community_id": 2,
+    "size": 9,
+    "num_edges": 36,
+    "top_entities": [
+      {
+        "concept_id": "C1446219",
+        "label": "AR",
+        "centrality": 1.0,
+        "frequency": 2
+      },
+      {
+        "concept_id": "C4085371",
+        "label": "electromyograms",
+        "centrality": 1.0,
+        "frequency": 2
+      },
+      {
+        "concept_id": "C0205116",
+        "label": "efferent",
+        "centrality": 1.0,
+        "frequency": 2
+      },
+      {
+        "concept_id": "C0439645",
+        "label": "frequency bands",
+        "centrality": 1.0,
+        "frequency": 4
+      },
+      {
+        "concept_id": "C1281060",
+        "label": "STN",
+        "centrality": 1.0,
+        "frequency": 2
+      },
+      {
+        "concept_id": "C0040822",
+        "label": "tremor",
+        "centrality": 1.0,
+        "frequency": 2
+      },
+      {
+        "concept_id": "C0205115",
+        "label": "afferent",
+        "centrality": 1.0,
+        "frequency": 6
+      },
+      {
+        "concept_id": "C0856077",
+        "label": "TD",
+        "centrality": 1.0,
+        "frequency": 2
+      },
+      {
+        "concept_id": "C3178983",
+        "label": "coherence",
+        "centrality": 1.0,
+        "frequency": 2
+      }
+    ]
+  }
+]

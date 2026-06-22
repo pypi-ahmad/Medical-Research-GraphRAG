@@ -1,0 +1,97 @@
+{
+  "mode": "executed",
+  "stack": {
+    "unsloth": true,
+    "peft": true,
+    "trl": true,
+    "datasets": true,
+    "transformers": true,
+    "accelerate": true
+  },
+  "dataset": {
+    "train_examples": 2500,
+    "eval_examples": 300,
+    "train_jsonl": "/home/ahmad/AI/Medical-Research-GraphRAG/outputs/finetune/datasets/sft_train.jsonl",
+    "eval_jsonl": "/home/ahmad/AI/Medical-Research-GraphRAG/outputs/finetune/datasets/sft_eval.jsonl"
+  },
+  "lora_config": {
+    "rank": 16,
+    "alpha": 32,
+    "dropout": 0.0,
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj",
+      "gate_proj",
+      "up_proj",
+      "down_proj"
+    ]
+  },
+  "training_config": {
+    "base_model": "unsloth/llama-3.2-3b-instruct",
+    "max_seq_length": 2048,
+    "train_batch_size": 2,
+    "gradient_accumulation_steps": 8,
+    "learning_rate": 0.0002,
+    "max_steps": 10,
+    "warmup_steps": 10
+  },
+  "trainer_log_summary": {
+    "loss": null,
+    "eval_loss": null,
+    "steps": null,
+    "tokens_per_second": null,
+    "backend": "failed",
+    "status": "failed",
+    "error": "'LlamaAttention' object has no attribute 'apply_qkv'"
+  },
+  "adapter_metadata": {
+    "adapter_dir": "/home/ahmad/AI/Medical-Research-GraphRAG/outputs/finetune/adapters/medresearch-lora",
+    "base_model": "unsloth/llama-3.2-3b-instruct",
+    "note": "RUN_FULL_TRAIN=True but training failed; see trainer_log_summary.error."
+  },
+  "ollama_modelfile_path": "/home/ahmad/AI/Medical-Research-GraphRAG/outputs/finetune/adapters/medresearch-lora/Modelfile",
+  "comparison_payload": {
+    "mode": "placeholder",
+    "baseline_vs_finetuned": {
+      "retrieval_metrics": {
+        "precision@k_delta": null,
+        "recall@k_delta": null,
+        "f1_delta": null,
+        "mrr_delta": null,
+        "ndcg_delta": null
+      },
+      "generation_metrics": {
+        "exact_match_delta": null,
+        "bleu_delta": null,
+        "rouge1_delta": null,
+        "rouge2_delta": null,
+        "rougeL_delta": null,
+        "meteor_delta": null,
+        "bertscore_f1_delta": null
+      },
+      "rag_metrics": {
+        "faithfulness_delta": null,
+        "context_precision_delta": null,
+        "context_recall_delta": null,
+        "answer_relevancy_delta": null
+      },
+      "judge_metrics": {
+        "groundedness_delta": null,
+        "relevance_delta": null,
+        "hallucination_delta": null,
+        "completeness_delta": null
+      },
+      "latency": {
+        "p50_ms_delta": null,
+        "p95_ms_delta": null
+      }
+    },
+    "notes": {
+      "judge_model": "granite4.1:8b",
+      "execution_phase": "implementation_only_no_training"
+    }
+  },
+  "placeholder_report": "/home/ahmad/AI/Medical-Research-GraphRAG/outputs/finetune/reports/nb11_finetune_report.json"
+}

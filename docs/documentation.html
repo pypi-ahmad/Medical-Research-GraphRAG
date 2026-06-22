@@ -1,0 +1,1581 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Medical Research GraphRAG Documentation</title><style>
+:root { --fg: #0f172a; --muted: #334155; --border: #cbd5e1; --codebg: #f8fafc; }
+* { box-sizing: border-box; }
+body { font-family: "Noto Sans", "DejaVu Sans", Arial, sans-serif; color: var(--fg); margin: 28px auto; max-width: 980px; line-height: 1.55; padding: 0 18px 48px; }
+h1, h2, h3, h4 { line-height: 1.25; margin-top: 1.4em; }
+h1 { font-size: 2.0rem; border-bottom: 2px solid var(--border); padding-bottom: 0.35rem; }
+h2 { font-size: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.2rem; }
+h3 { font-size: 1.2rem; }
+p, li { font-size: 0.97rem; }
+code { background: var(--codebg); border: 1px solid #e2e8f0; border-radius: 4px; padding: 0.05rem 0.35rem; font-family: "DejaVu Sans Mono", "Noto Sans Mono", monospace; font-size: 0.88rem; }
+pre { background: var(--codebg); border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.9rem; overflow-x: auto; }
+pre code { border: none; padding: 0; background: transparent; }
+table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+th, td { border: 1px solid var(--border); text-align: left; padding: 0.45rem 0.55rem; vertical-align: top; }
+th { background: #f1f5f9; }
+hr { border: 0; border-top: 1px solid var(--border); margin: 2rem 0; }
+blockquote { border-left: 4px solid #94a3b8; margin: 1rem 0; padding: 0.25rem 0.75rem; color: var(--muted); }
+@media print {
+  body { max-width: 100%; margin: 0; padding: 0.4in; }
+  pre, table { page-break-inside: avoid; }
+  h1, h2, h3 { page-break-after: avoid; }
+}
+</style></head><body><h1 id="medical-research-graphrag-complete-documentation">Medical Research GraphRAG - Complete Documentation</h1>
+<p><em>Generated from repository documentation files and real run artifacts.</em></p>
+<hr>
+<h1 id="medical-research-graphrag">Medical Research GraphRAG</h1>
+<p>Biomedical AI engineering project for medically grounded question answering using real MedMentions data and multiple RAG variants.</p>
+<h2 id="overview">Overview</h2>
+<p>This repository implements and evaluates:
+- GraphRAG (Chroma baseline + Pinecone comparison)
+- Agentic GraphRAG (LangGraph state machine)
+- Hybrid RAG (dense + sparse biomedical retrieval)
+- Corrective RAG (CRAG)
+- Multimodal RAG (OCR CLI and vision extraction)
+- Unified evaluation (retrieval, generation, RAG, LLM judge)
+- Optional selective fine-tuning track (Unsloth + PEFT + TRL)</p>
+<h2 id="ground-truth-policy">Ground-Truth Policy</h2>
+<p>All documentation in this repository is grounded in:
+1. Local source code under <code>src/</code> and notebook scripts under <code>notebooks/*.py</code>.
+2. Real execution artifacts under <code>outputs/</code>.
+3. Real run logs under <code>outputs/logs/</code> and state under <code>outputs/run_state/</code>.</p>
+<p>No synthetic metrics or placeholder results are presented as completed outcomes.</p>
+<h2 id="real-data-model-stack">Real Data + Model Stack</h2>
+<ul>
+<li>Dataset: <code>bigbio/medmentions</code> (real records only; no synthetic records)</li>
+<li>Effective corpus in latest run: 4,392 records</li>
+<li><code>train=2,635</code>, <code>validation=878</code>, <code>test=879</code></li>
+<li>Embeddings: <code>qwen3-embedding:4b</code> (Ollama)</li>
+<li>Generator: <code>granite4.1:8b</code> (Ollama)</li>
+<li>Judge: <code>granite4.1:8b</code> (Ollama)</li>
+<li>OCR (multimodal): <code>glm-ocr</code> via <code>ollama run</code></li>
+<li>Vision (multimodal): <code>qwen3.5:4b</code></li>
+</ul>
+<h2 id="latest-real-run-provenance-june-22-2026">Latest Real Run Provenance (June 22, 2026)</h2>
+<p>Primary sources:
+- Run state: <code>outputs/run_state/full_real_pipeline.state</code>
+- Full run log: <code>outputs/logs/full_real_pipeline_20260622_110834.log</code>
+- Per-notebook logs: <code>outputs/logs/NB*_20260622_110834.log</code></p>
+<p>State summary (<code>full_real_pipeline.state</code>):
+- Preflight + model steps: done
+- NB01 through NB11: done
+- <code>pytest_q</code>: done</p>
+<h2 id="exact-workflow-map">Exact Workflow Map</h2>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Notebook</th>
+<th>Primary implementation modules</th>
+<th>Main artifacts</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data foundation</td>
+<td><code>NB01_Data_Exploration</code></td>
+<td><code>src/data_pipeline.py</code></td>
+<td><code>outputs/tables/nb01_*</code>, <code>outputs/figures/nb01_*</code></td>
+</tr>
+<tr>
+<td>Chroma GraphRAG</td>
+<td><code>NB02_Chroma_GraphRAG</code></td>
+<td><code>src/chroma_retriever.py</code>, <code>src/graph_builder.py</code>, <code>src/chunking.py</code>, <code>src/embeddings.py</code></td>
+<td><code>outputs/tables/nb02_*</code>, <code>outputs/figures/nb02_*</code></td>
+</tr>
+<tr>
+<td>Pinecone GraphRAG</td>
+<td><code>NB03_Pinecone_GraphRAG</code></td>
+<td><code>src/pinecone_retriever.py</code> + shared graph stack</td>
+<td><code>outputs/metrics/nb03_retrieval_benchmark.json</code>, <code>outputs/tables/nb03_chroma_vs_pinecone.csv</code></td>
+</tr>
+<tr>
+<td>Agentic GraphRAG</td>
+<td><code>NB04_Agentic_GraphRAG</code></td>
+<td><code>src/agentic_rag.py</code></td>
+<td><code>outputs/metrics/nb04_agentic_demo.json</code>, <code>outputs/tables/nb04_agentic_route_summary.csv</code></td>
+</tr>
+<tr>
+<td>Unified evaluation</td>
+<td><code>NB05_Evaluation</code></td>
+<td><code>src/evaluator.py</code>, <code>src/llm_judge.py</code></td>
+<td><code>outputs/metrics/nb05_evaluation_bundle.json</code>, <code>outputs/tables/nb05_metric_summary.csv</code></td>
+</tr>
+<tr>
+<td>Hybrid RAG</td>
+<td><code>NB06_Hybrid_RAG</code></td>
+<td><code>src/hybrid_retriever.py</code></td>
+<td><code>outputs/metrics/nb06_hybrid_rag_metrics.json</code></td>
+</tr>
+<tr>
+<td>CRAG</td>
+<td><code>NB07_CRAG</code></td>
+<td><code>src/crag_pipeline.py</code></td>
+<td><code>outputs/metrics/nb07_crag_metrics.json</code>, <code>outputs/tables/nb07_crag_route_summary.csv</code></td>
+</tr>
+<tr>
+<td>Multimodal baseline</td>
+<td><code>NB08_Multimodal_RAG</code></td>
+<td><code>src/multimodal_rag.py</code>, <code>src/multimodal_assets_pmc.py</code></td>
+<td><code>outputs/metrics/nb08_multimodal_rag_metrics.json</code></td>
+</tr>
+<tr>
+<td>Multimodal CLI OCR</td>
+<td><code>NB09_Multimodal_RAG_OCR_CLI</code></td>
+<td><code>src/multimodal_rag.py</code></td>
+<td><code>outputs/metrics/nb09_multimodal_ocr_cli_metrics.json</code></td>
+</tr>
+<tr>
+<td>Multimodal vision</td>
+<td><code>NB10_Multimodal_RAG_Vision_Qwen</code></td>
+<td><code>src/multimodal_vision_rag.py</code></td>
+<td><code>outputs/metrics/nb10_multimodal_qwen_vision_metrics.json</code></td>
+</tr>
+<tr>
+<td>Optional fine-tune track</td>
+<td><code>NB11_Selective_Finetuning_Unsloth_PEFT_TRL</code></td>
+<td><code>src/finetune_data.py</code>, <code>src/finetune_unsloth.py</code></td>
+<td><code>outputs/metrics/nb11_selective_finetune_metrics.json</code>, <code>outputs/finetune/</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="key-results-snapshot-latest-artifacts">Key Results Snapshot (Latest Artifacts)</h2>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Key values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NB03 Chroma latency</td>
+<td>p50 <code>5973ms</code>, p95 <code>6673ms</code>, p99 <code>6773ms</code></td>
+</tr>
+<tr>
+<td>NB03 Pinecone latency</td>
+<td>p50 <code>9658ms</code>, p95 <code>11889ms</code>, p99 <code>14087ms</code></td>
+</tr>
+<tr>
+<td>NB05 baseline retrieval (<code>k=8</code>)</td>
+<td>precision <code>0.0417</code>, recall <code>0.3000</code>, MRR <code>0.2162</code>, NDCG <code>0.2324</code></td>
+</tr>
+<tr>
+<td>NB06 hybrid retrieval (<code>k=8</code>)</td>
+<td>precision <code>0.0625</code>, recall <code>0.4500</code>, MRR <code>0.3931</code>, NDCG <code>0.4101</code></td>
+</tr>
+<tr>
+<td>NB07 CRAG retrieval (<code>k=8</code>)</td>
+<td>precision <code>0.0781</code>, recall <code>0.3750</code>, MRR <code>0.3125</code>, NDCG <code>0.3314</code></td>
+</tr>
+<tr>
+<td>NB08 multimodal retrieval (<code>k=8</code>)</td>
+<td>precision <code>0.1250</code>, recall <code>1.0000</code>, MRR <code>1.0000</code>, NDCG <code>1.0000</code></td>
+</tr>
+<tr>
+<td>NB09 multimodal CLI retrieval (<code>k=8</code>)</td>
+<td>precision <code>0.1250</code>, recall <code>1.0000</code>, MRR <code>1.0000</code>, NDCG <code>1.0000</code></td>
+</tr>
+<tr>
+<td>NB10 multimodal vision retrieval (<code>k=8</code>)</td>
+<td>precision <code>0.1667</code>, recall <code>1.0000</code>, MRR <code>1.0000</code>, NDCG <code>1.0000</code></td>
+</tr>
+<tr>
+<td>NB11 latest trainer status</td>
+<td><code>failed</code> with <code>'LlamaAttention' object has no attribute 'apply_qkv'</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="environment-and-execution">Environment and Execution</h2>
+<h3 id="setup">Setup</h3>
+<pre><code class="language-bash">cd /home/ahmad/AI/Medical-Research-GraphRAG
+
+if [ ! -d .venv ]; then
+  uv python install 3.12.10
+  uv venv --python 3.12.10 .venv
+fi
+
+source .venv/bin/activate
+uv sync --extra dev --extra finetune
+</code></pre>
+<h3 id="required-ollama-models">Required Ollama models</h3>
+<pre><code class="language-bash">ollama pull qwen3-embedding:4b
+ollama pull granite4.1:8b
+ollama pull glm-ocr
+ollama pull qwen3.5:4b
+</code></pre>
+<h3 id="notebook-execution-scripts">Notebook execution scripts</h3>
+<ul>
+<li>Canonical baseline: <code>bash scripts/execute_notebooks.sh</code></li>
+<li>Additive notebooks: <code>bash scripts/execute_additional_notebooks.sh</code></li>
+<li>Strict resumable run: <code>bash scripts/run_full_real_pipeline_strict.sh</code></li>
+</ul>
+<h2 id="documentation-index">Documentation Index</h2>
+<ul>
+<li>Main handbook: <code>docs/handbook.md</code></li>
+<li>Evidence ledger: <code>docs/evidence_ledger.md</code></li>
+<li>Tutorial chapters: <code>docs/tutorials/*.md</code></li>
+<li>Combined publication markdown: <code>docs/documentation.md</code></li>
+<li>PDF: <code>docs/documentation.pdf</code></li>
+</ul>
+<h2 id="current-limitations-evidence-based">Current Limitations (Evidence-Based)</h2>
+<ol>
+<li>Latest NB11 metrics artifact reports training backend failure; baseline-vs-finetuned deltas are null in <code>comparison_payload</code>.</li>
+<li><code>BERTScore</code> fields are <code>0.0</code> in current metric artifacts.</li>
+<li>Multimodal assets are real open biomedical/health datasets (OWID-based chart/table pipeline), not radiology/pathology imaging datasets.</li>
+</ol>
+<h2 id="safety-note">Safety Note</h2>
+<p>This is an engineering research system, not a clinical decision support product. Human clinical review and governance are required for medical deployment.</p>
+<hr>
+<h1 id="medical-research-graphrag-handbook">Medical Research GraphRAG Handbook</h1>
+<p>This handbook documents the implemented system using the local codebase and executed artifacts as the only source of truth.</p>
+<ul>
+<li>Project root: <code>/home/ahmad/AI/Medical-Research-GraphRAG</code></li>
+<li>Evidence ledger: <code>docs/evidence_ledger.md</code></li>
+<li>Latest full run log: <code>outputs/logs/full_real_pipeline_20260622_110834.log</code></li>
+<li>Latest run state: <code>outputs/run_state/full_real_pipeline.state</code></li>
+</ul>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="tutorials/00_getting_started.md">Getting Started</a></li>
+<li><a href="tutorials/01_data_foundation.md">Data Foundation (MedMentions)</a></li>
+<li><a href="tutorials/02_chroma_graphrag.md">Chroma GraphRAG</a></li>
+<li><a href="tutorials/03_pinecone_graphrag.md">Pinecone GraphRAG</a></li>
+<li><a href="tutorials/04_agentic_graphrag.md">Agentic GraphRAG (LangGraph)</a></li>
+<li><a href="tutorials/05_evaluation.md">Evaluation Framework</a></li>
+<li><a href="tutorials/06_hybrid_rag.md">Hybrid RAG</a></li>
+<li><a href="tutorials/07_crag.md">Corrective RAG (CRAG)</a></li>
+<li><a href="tutorials/08_multimodal_rag.md">Multimodal RAG (OCR + Tables)</a></li>
+<li><a href="tutorials/09_multimodal_ocr_cli.md">Multimodal RAG (CLI OCR specialization)</a></li>
+<li><a href="tutorials/10_multimodal_vision_qwen.md">Multimodal RAG (Vision with qwen3.5:4b)</a></li>
+<li><a href="tutorials/11_selective_finetuning.md">Selective Fine-Tuning (Unsloth + PEFT + TRL)</a></li>
+</ol>
+<h2 id="system-architecture">System Architecture</h2>
+<pre><code class="language-mermaid">flowchart TD
+    A[MedMentions records] --&gt; B[Chunking + entity metadata]
+    B --&gt; C[Embeddings: qwen3-embedding:4b]
+    C --&gt; D[Chroma index]
+    C --&gt; E[Pinecone index]
+    B --&gt; F[Relation extraction]
+    F --&gt; G[NetworkX graph + communities]
+    D --&gt; H[GraphRAG retrieval]
+    E --&gt; H
+    G --&gt; H
+    H --&gt; I[Agentic/CRAG control]
+    I --&gt; J[Answer generation: granite4.1:8b]
+    I --&gt; K[Judge: granite4.1:8b]
+    J --&gt; L[Evaluation artifacts]
+    K --&gt; L
+    M[Multimodal images/tables] --&gt; N[glm-ocr CLI or qwen3.5 vision]
+    N --&gt; O[Multimodal chunks]
+    O --&gt; D
+</code></pre>
+<h2 id="exact-execution-chain-implemented">Exact Execution Chain (Implemented)</h2>
+<p>From <code>scripts/run_full_real_pipeline_strict.sh</code>, the full strict workflow includes:
+1. Environment sync (<code>uv sync --extra dev --extra finetune</code>)
+2. Ollama preflight and model availability checks
+3. Multimodal asset fetch
+4. Notebook execution in sequence:
+   - NB01, NB02, NB03, NB04, NB05, NB06, NB07, NB08, NB09, NB10, NB11
+5. <code>pytest -q</code> quality gate</p>
+<p>Resume semantics are state-driven via <code>outputs/run_state/full_real_pipeline.state</code>.</p>
+<h2 id="ground-truth-artifact-map">Ground-Truth Artifact Map</h2>
+<ul>
+<li>Data profiling: <code>outputs/tables/nb01_*</code>, <code>outputs/figures/nb01_*</code></li>
+<li>Graph and relation outputs: <code>outputs/tables/nb02_*</code>, <code>outputs/figures/nb02_*</code></li>
+<li>Chroma vs Pinecone benchmark: <code>outputs/metrics/nb03_retrieval_benchmark.json</code>, <code>outputs/tables/nb03_chroma_vs_pinecone.csv</code></li>
+<li>Agentic traces: <code>outputs/metrics/nb04_agentic_demo.json</code>, <code>outputs/tables/nb04_agentic_route_summary.csv</code></li>
+<li>Unified evaluation: <code>outputs/metrics/nb05_evaluation_bundle.json</code>, <code>outputs/tables/nb05_metric_summary.csv</code></li>
+<li>Hybrid: <code>outputs/metrics/nb06_hybrid_rag_metrics.json</code></li>
+<li>CRAG: <code>outputs/metrics/nb07_crag_metrics.json</code>, <code>outputs/tables/nb07_crag_route_summary.csv</code></li>
+<li>Multimodal OCR/table: <code>outputs/metrics/nb08_multimodal_rag_metrics.json</code></li>
+<li>Multimodal CLI OCR: <code>outputs/metrics/nb09_multimodal_ocr_cli_metrics.json</code></li>
+<li>Multimodal vision: <code>outputs/metrics/nb10_multimodal_qwen_vision_metrics.json</code></li>
+<li>Optional fine-tuning track: <code>outputs/metrics/nb11_selective_finetune_metrics.json</code>, <code>outputs/finetune/</code></li>
+</ul>
+<h2 id="latest-run-summary-june-22-2026">Latest Run Summary (June 22, 2026)</h2>
+<p>From <code>outputs/logs/full_real_pipeline_20260622_110834.log</code>:
+- Start: <code>2026-06-22 11:08:34</code>
+- End: <code>2026-06-22 12:08:49</code>
+- Resume behavior skipped previously completed steps and executed NB07-NB11 in this log window.
+- <code>pytest -q</code> completed successfully (<code>41 passed</code>; warnings only).</p>
+<h2 id="metric-snapshot-latest-artifacts">Metric Snapshot (latest artifacts)</h2>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Key values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NB05 baseline retrieval (<code>k=8</code>)</td>
+<td>precision <code>0.0417</code>, recall <code>0.3000</code>, MRR <code>0.2162</code>, NDCG <code>0.2324</code></td>
+</tr>
+<tr>
+<td>NB03 Chroma latency</td>
+<td>p50 <code>5973ms</code>, p95 <code>6673ms</code></td>
+</tr>
+<tr>
+<td>NB03 Pinecone latency</td>
+<td>p50 <code>9658ms</code>, p95 <code>11889ms</code></td>
+</tr>
+<tr>
+<td>NB06 hybrid retrieval (<code>k=8</code>)</td>
+<td>precision <code>0.0625</code>, recall <code>0.4500</code>, MRR <code>0.3931</code></td>
+</tr>
+<tr>
+<td>NB07 CRAG retrieval (<code>k=8</code>)</td>
+<td>precision <code>0.0781</code>, recall <code>0.3750</code>, MRR <code>0.3125</code></td>
+</tr>
+<tr>
+<td>NB08 multimodal retrieval (<code>k=8</code>)</td>
+<td>precision <code>0.1250</code>, recall <code>1.0000</code>, MRR <code>1.0000</code></td>
+</tr>
+<tr>
+<td>NB09 multimodal CLI retrieval (<code>k=8</code>)</td>
+<td>precision <code>0.1250</code>, recall <code>1.0000</code>, MRR <code>1.0000</code></td>
+</tr>
+<tr>
+<td>NB10 multimodal vision retrieval (<code>k=8</code>)</td>
+<td>precision <code>0.1667</code>, recall <code>1.0000</code>, MRR <code>1.0000</code></td>
+</tr>
+<tr>
+<td>NB11 latest trainer status</td>
+<td><code>failed</code> with <code>'LlamaAttention' object has no attribute 'apply_qkv'</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="practical-interpretation-strict-neutral">Practical Interpretation (Strict-Neutral)</h2>
+<ul>
+<li>Baseline retrieval quality remains limited at higher-K precision.</li>
+<li>Hybrid retrieval shows higher recall/MRR than baseline in latest artifacts.</li>
+<li>CRAG provides traceable corrective routing behavior and stable judge-based relevancy in the recorded run.</li>
+<li>Multimodal pipelines produce high recall under the current asset/query setup.</li>
+<li>NB11 pipeline is implemented, but latest metrics artifact reports trainer backend failure and placeholder comparison deltas.</li>
+</ul>
+<h2 id="documentation-rules-used">Documentation Rules Used</h2>
+<ul>
+<li>No synthetic metric substitution.</li>
+<li>No invented outputs.</li>
+<li>Claims are tied to concrete files under <code>outputs/</code>.</li>
+<li>Code behavior references are tied to <code>src/*.py</code>, <code>notebooks/*.py</code>, and <code>scripts/</code>.</li>
+<li>Mixed outcomes are reported as observed, without optimistic extrapolation.</li>
+</ul>
+<h2 id="official-external-references">Official External References</h2>
+<ul>
+<li>MedMentions dataset card: https://huggingface.co/datasets/bigbio/medmentions</li>
+<li>Ollama embeddings/docs: https://docs.ollama.com/capabilities/embeddings</li>
+<li>Ollama API: https://docs.ollama.com/api</li>
+<li>LangGraph docs: https://langchain-ai.github.io/langgraph/</li>
+<li>Chroma docs: https://docs.trychroma.com/</li>
+<li>Pinecone docs: https://docs.pinecone.io/</li>
+<li>PEFT docs: https://huggingface.co/docs/peft/index</li>
+<li>TRL docs: https://huggingface.co/docs/trl</li>
+<li>Unsloth repository/docs: https://github.com/unslothai/unsloth</li>
+</ul>
+<hr>
+<h1 id="evidence-ledger-source-of-truth">Evidence Ledger (Source of Truth)</h1>
+<p>This file records the exact local artifacts used as ground truth for the documentation set.</p>
+<h2 id="provenance-policy">Provenance Policy</h2>
+<p>Claims are sourced from:
+1. Repository code (<code>src/</code>, <code>notebooks/*.py</code>, <code>scripts/</code>)
+2. Run state and logs (<code>outputs/run_state/</code>, <code>outputs/logs/</code>)
+3. Metrics/tables/figures (<code>outputs/metrics/</code>, <code>outputs/tables/</code>, <code>outputs/figures/</code>)</p>
+<h2 id="latest-full-run-detected">Latest Full Run (Detected)</h2>
+<ul>
+<li>State file: <code>outputs/run_state/full_real_pipeline.state</code></li>
+<li>Latest full run log: <code>outputs/logs/full_real_pipeline_20260622_110834.log</code></li>
+<li>Log window: <code>2026-06-22 11:08:34</code> to <code>2026-06-22 12:08:49</code></li>
+</ul>
+<h3 id="run-state-keys-marked-done">Run-state keys marked done</h3>
+<ul>
+<li>preflight/model fetch steps</li>
+<li>NB01 through NB11 notebook steps</li>
+<li>pytest gate (<code>pytest_q</code>)</li>
+</ul>
+<h2 id="primary-metric-artifacts-latest-timestamps">Primary Metric Artifacts (latest timestamps)</h2>
+<ul>
+<li><code>outputs/metrics/nb03_retrieval_benchmark.json</code> (Jun 22, 10:03)</li>
+<li><code>outputs/metrics/nb05_evaluation_bundle.json</code> (Jun 22, 10:20)</li>
+<li><code>outputs/metrics/nb06_hybrid_rag_metrics.json</code> (Jun 22, 10:27)</li>
+<li><code>outputs/metrics/nb07_crag_metrics.json</code> (Jun 22, 11:28)</li>
+<li><code>outputs/metrics/nb08_multimodal_rag_metrics.json</code> (Jun 22, 11:37)</li>
+<li><code>outputs/metrics/nb09_multimodal_ocr_cli_metrics.json</code> (Jun 22, 11:42)</li>
+<li><code>outputs/metrics/nb10_multimodal_qwen_vision_metrics.json</code> (Jun 22, 11:52)</li>
+<li><code>outputs/metrics/nb11_selective_finetune_metrics.json</code> (Jun 22, 12:06)</li>
+</ul>
+<h2 id="key-numeric-facts-referenced-in-docs">Key Numeric Facts Referenced in Docs</h2>
+<h3 id="nb03-backend-benchmark">NB03 backend benchmark</h3>
+<ul>
+<li>Chroma latency p50/p95/p99: <code>5973.14 / 6672.91 / 6773.33 ms</code></li>
+<li>Pinecone latency p50/p95/p99: <code>9657.66 / 11888.92 / 14086.93 ms</code></li>
+</ul>
+<h3 id="nb05-baseline-evaluation">NB05 baseline evaluation</h3>
+<ul>
+<li>Retrieval (<code>k=8</code>): precision <code>0.0417</code>, recall <code>0.3000</code>, MRR <code>0.2162</code>, NDCG <code>0.2324</code></li>
+<li>RAG: faithfulness <code>0.9458</code>, answer_relevancy <code>0.9833</code></li>
+</ul>
+<h3 id="nb06-hybrid">NB06 hybrid</h3>
+<ul>
+<li>Retrieval (<code>k=8</code>): precision <code>0.0625</code>, recall <code>0.4500</code>, MRR <code>0.3931</code>, NDCG <code>0.4101</code></li>
+</ul>
+<h3 id="nb07-crag">NB07 CRAG</h3>
+<ul>
+<li>Retrieval (<code>k=8</code>): precision <code>0.0781</code>, recall <code>0.3750</code>, MRR <code>0.3125</code>, NDCG <code>0.3314</code></li>
+</ul>
+<h3 id="nb08nb09nb10-multimodal">NB08/NB09/NB10 multimodal</h3>
+<ul>
+<li>NB08 (<code>k=8</code>): precision <code>0.1250</code>, recall <code>1.0000</code>, MRR <code>1.0000</code>, NDCG <code>1.0000</code></li>
+<li>NB09 (<code>k=8</code>): precision <code>0.1250</code>, recall <code>1.0000</code>, MRR <code>1.0000</code>, NDCG <code>1.0000</code></li>
+<li>NB10 (<code>k=8</code>): precision <code>0.1667</code>, recall <code>1.0000</code>, MRR <code>1.0000</code>, NDCG <code>1.0000</code></li>
+</ul>
+<h3 id="nb11-latest-metrics-artifact">NB11 (latest metrics artifact)</h3>
+<ul>
+<li><code>trainer_log_summary.backend = failed</code></li>
+<li><code>trainer_log_summary.error = 'LlamaAttention' object has no attribute 'apply_qkv'</code></li>
+<li><code>comparison_payload.mode = placeholder</code></li>
+</ul>
+<h2 id="known-artifact-tension-documented-neutrality">Known Artifact Tension (Documented Neutrality)</h2>
+<ul>
+<li><code>outputs/metrics/nb11_selective_finetune_metrics.json</code> reports a failed training backend in latest run.</li>
+<li><code>outputs/finetune/adapters/medresearch-lora/</code> contains existing adapter files from an earlier timestamp.</li>
+<li>Documentation therefore treats NB11 as: implemented pipeline present, latest run comparison deltas not available.</li>
+</ul>
+<h2 id="script-level-evidence">Script-Level Evidence</h2>
+<ul>
+<li>Strict run orchestrator: <code>scripts/run_full_real_pipeline_strict.sh</code></li>
+<li>Notebook order in script includes NB01 -&gt; NB11 and a final <code>pytest -q</code> step.</li>
+<li>Resume semantics are driven by <code>outputs/run_state/full_real_pipeline.state</code>.</li>
+</ul>
+<h2 id="documentation-scope-guard">Documentation Scope Guard</h2>
+<p>Only documentation files are modified during this documentation pass:
+- <code>README.md</code>
+- <code>docs/*.md</code>
+- <code>docs/documentation.pdf</code>
+- optional docs-only rendering intermediates under <code>docs/</code></p>
+<hr>
+<h1 id="00-getting-started">00. Getting Started</h1>
+<h2 id="what-this-project-is">What this project is</h2>
+<p>A full biomedical RAG engineering stack combining:
+- GraphRAG
+- Agentic RAG
+- Hybrid RAG
+- Corrective RAG (CRAG)
+- Multimodal RAG (OCR and vision)
+- Optional selective fine-tuning</p>
+<p>All pipelines are grounded in real MedMentions records and local Ollama-hosted models.</p>
+<h2 id="why-this-tutorial-exists">Why this tutorial exists</h2>
+<p>This chapter provides the operational map before deep-diving into each notebook.</p>
+<h2 id="ground-truth-first">Ground-truth first</h2>
+<p>Before using results, check:
+- <code>docs/evidence_ledger.md</code>
+- <code>outputs/run_state/full_real_pipeline.state</code>
+- latest full run log in <code>outputs/logs/</code></p>
+<h2 id="core-workflow">Core workflow</h2>
+<ol>
+<li>Load and normalize MedMentions records.</li>
+<li>Chunk and embed with <code>qwen3-embedding:4b</code>.</li>
+<li>Index in Chroma and optionally Pinecone.</li>
+<li>Build graph (entities, relations, communities).</li>
+<li>Run retrieval variants (baseline, hybrid, CRAG, multimodal).</li>
+<li>Generate answers (<code>granite4.1:8b</code>) and judge outputs (<code>granite4.1:8b</code>).</li>
+<li>Persist metrics, tables, and figures.</li>
+</ol>
+<h2 id="architecture-diagram">Architecture diagram</h2>
+<pre><code class="language-mermaid">flowchart TD
+    A[MedMentions] --&gt; B[Chunking]
+    B --&gt; C[Embedding]
+    C --&gt; D[Vector indexes]
+    B --&gt; E[Graph build]
+    D --&gt; F[Retrieval variants]
+    E --&gt; F
+    F --&gt; G[Generation + Judge]
+    G --&gt; H[Evaluation artifacts]
+</code></pre>
+<h2 id="how-this-appears-in-code">How this appears in code</h2>
+<ul>
+<li>Configuration and paths: <code>src/config.py</code></li>
+<li>Data ingestion: <code>src/data_pipeline.py</code></li>
+<li>Chunking: <code>src/chunking.py</code></li>
+<li>Embeddings: <code>src/embeddings.py</code></li>
+<li>Core notebooks: <code>notebooks/NB01_*.py</code> to <code>NB11_*.py</code></li>
+<li>Strict orchestrator: <code>scripts/run_full_real_pipeline_strict.sh</code></li>
+</ul>
+<h2 id="environment-setup">Environment setup</h2>
+<pre><code class="language-bash">cd /home/ahmad/AI/Medical-Research-GraphRAG
+
+if [ ! -d .venv ]; then
+  uv python install 3.12.10
+  uv venv --python 3.12.10 .venv
+fi
+
+source .venv/bin/activate
+uv sync --extra dev --extra finetune
+</code></pre>
+<h2 id="required-models">Required models</h2>
+<pre><code class="language-bash">ollama pull qwen3-embedding:4b
+ollama pull granite4.1:8b
+ollama pull glm-ocr
+ollama pull qwen3.5:4b
+</code></pre>
+<h2 id="run-entrypoints">Run entrypoints</h2>
+<ul>
+<li>Baseline notebooks: <code>bash scripts/execute_notebooks.sh</code></li>
+<li>Additive notebooks: <code>bash scripts/execute_additional_notebooks.sh</code></li>
+<li>Full strict run: <code>bash scripts/run_full_real_pipeline_strict.sh</code></li>
+</ul>
+<h2 id="why-strict-runner-matters">Why strict runner matters</h2>
+<p><code>run_full_real_pipeline_strict.sh</code> adds:
+- resume-aware state tracking,
+- retry semantics per step,
+- model preflight checks,
+- full logging,
+- final <code>pytest -q</code> gate.</p>
+<h2 id="real-outputs-to-inspect">Real outputs to inspect</h2>
+<ul>
+<li>Metrics: <code>outputs/metrics/*.json</code></li>
+<li>Tables: <code>outputs/tables/*.csv</code></li>
+<li>Figures: <code>outputs/figures/*.png</code></li>
+<li>Execution logs: <code>outputs/logs/*.log</code></li>
+</ul>
+<h2 id="production-considerations">Production considerations</h2>
+<ul>
+<li>Pin model versions across indexing/query/evaluation.</li>
+<li>Keep artifact lineage for every run.</li>
+<li>Treat logs and metrics as auditable operational evidence.</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>Read this chapter first, then proceed through NB01 -&gt; NB11 tutorials for the full zero-to-hero path.</p>
+<hr>
+<h1 id="01-data-foundation-medmentions">01. Data Foundation (MedMentions)</h1>
+<h2 id="what-is-this-technique">What is this technique?</h2>
+<p>This chapter covers <strong>data foundation engineering</strong> for medical RAG: loading, normalizing, validating, and persisting real biomedical records before retrieval or generation.</p>
+<h2 id="definition-and-core-concepts">Definition and core concepts</h2>
+<ul>
+<li><strong>Record normalization</strong>: mapping raw dataset schema to stable dataclasses.</li>
+<li><strong>Entity normalization</strong>: preserving concept IDs and semantic types.</li>
+<li><strong>Extractive eval query generation</strong>: building query/reference pairs directly from real abstract sentences.</li>
+</ul>
+<h2 id="why-was-this-developed">Why was this developed?</h2>
+<p>RAG quality is bounded by input quality. If schemas drift or annotations are inconsistent, every downstream stage degrades.</p>
+<h2 id="what-limitation-of-traditional-rag-does-it-solve">What limitation of traditional RAG does it solve?</h2>
+<p>Many RAG demos use ad-hoc text chunks and synthetic QA pairs. This implementation avoids that by grounding evaluation and retrieval in real biomedical annotations.</p>
+<h2 id="how-it-appears-in-code">How it appears in code</h2>
+<ul>
+<li>Dataclasses: <code>EntityMention</code>, <code>MedRecord</code>, <code>EvalQuery</code> in <code>src/data_pipeline.py</code> (lines 18-50)</li>
+<li>Loader: <code>load_medmentions_records</code> (lines 101-141)</li>
+<li>Query builder: <code>build_extractive_eval_queries</code> (lines 180-240)</li>
+<li>Persistence: <code>persist_records</code> and <code>persist_eval_queries</code> (lines 145-150, 243-249)</li>
+</ul>
+<p>Notebook implementation:
+- <code>notebooks/NB01_Data_Exploration.py</code></p>
+<h2 id="architectureworkflow-explanation">Architecture/workflow explanation</h2>
+<pre><code class="language-mermaid">flowchart TD
+    A[HF bigbio/medmentions] --&gt; B[Schema normalization]
+    B --&gt; C[Entity cleanup]
+    C --&gt; D[Persist normalized records]
+    D --&gt; E[Build extractive eval queries]
+</code></pre>
+<ul>
+<li>Step A-B is implemented in <code>load_medmentions_records</code>.</li>
+<li>Step C uses <code>_normalize_entity</code>.</li>
+<li>Step E uses deterministic entity-to-sentence matching.</li>
+</ul>
+<h2 id="component-by-component-breakdown">Component-by-component breakdown</h2>
+<ol>
+<li><code>_extract_passages</code> pulls title/abstract robustly from varied passage fields.</li>
+<li><code>_normalize_entity</code> standardizes offsets and semantic type lists.</li>
+<li><code>load_medmentions_records</code> aggregates all splits and applies deterministic sampling.</li>
+<li><code>build_extractive_eval_queries</code> generates grounded references from real abstract sentences.</li>
+</ol>
+<h2 id="real-observed-outputs">Real observed outputs</h2>
+<p>From <code>outputs/tables/nb01_split_summary.csv</code>:
+- <code>train=2635</code>, <code>validation=878</code>, <code>test=879</code> (total 4,392)
+- Average text length ~1,579-1,593 chars
+- Average entity count ~80 per record</p>
+<p>From <code>outputs/tables/nb01_top_concepts.csv</code>:
+- Top CUI mentions include <code>C0030705</code> with 5,897 occurrences.</p>
+<p>From <code>outputs/tables/nb01_top_semantic_types.csv</code>:
+- Most frequent semantic types include <code>T080</code>, <code>T169</code>, <code>T081</code>.</p>
+<h2 id="why-this-design-over-alternatives">Why this design over alternatives</h2>
+<ul>
+<li>Chosen: MedMentions because it includes UMLS concept IDs and broad biomedical coverage.</li>
+<li>Not chosen: narrow-domain corpora (e.g., only disease/chemical) for this graph-heavy architecture.</li>
+</ul>
+<h2 id="when-should-this-approach-be-used">When should this approach be used?</h2>
+<p>Use when you need:
+- biomedical entity IDs as first-class retrieval features,
+- graph construction from real concept annotations,
+- reproducible eval queries with non-synthetic references.</p>
+<h2 id="advantages">Advantages</h2>
+<ul>
+<li>High grounding quality for eval references.</li>
+<li>Strong traceability from answer quality back to source records.</li>
+<li>Deterministic sampling and reproducible artifacts.</li>
+</ul>
+<h2 id="disadvantages">Disadvantages</h2>
+<ul>
+<li>More upfront preprocessing effort than plain text dumps.</li>
+<li>Evaluation references are extractive; may under-represent abstractive correctness.</li>
+</ul>
+<h2 id="comparison-against-standard-rag-prep">Comparison against standard RAG prep</h2>
+<ul>
+<li>Standard prep: plain text chunks, weak entity metadata.</li>
+<li>This prep: concept-aware records + grounded eval references.</li>
+</ul>
+<h2 id="production-considerations_1">Production considerations</h2>
+<ul>
+<li>Version dataset slice and random seed.</li>
+<li>Keep schema contracts stable across notebook/script paths.</li>
+<li>Persist normalized artifacts for reproducibility and audit.</li>
+</ul>
+<h2 id="conclusion_1">Conclusion</h2>
+<p>This foundation is the reason later GraphRAG, CRAG, and multimodal evaluations remain grounded and reproducible.</p>
+<hr>
+<h1 id="02-chroma-graphrag">02. Chroma GraphRAG</h1>
+<h2 id="what-is-this-technique_1">What is this technique?</h2>
+<p><strong>GraphRAG</strong> augments vector retrieval with graph structure (entities, relations, communities) so evidence retrieval is not purely embedding-similarity based.</p>
+<p>This notebook builds the local baseline using ChromaDB.</p>
+<h2 id="definition-and-core-concepts_1">Definition and core concepts</h2>
+<ul>
+<li><strong>Dense retrieval</strong>: similarity search over chunk embeddings.</li>
+<li><strong>Entity graph</strong>: UMLS concepts as nodes, co-occurrence/relations as edges.</li>
+<li><strong>Local search</strong>: neighborhood expansion around query concepts.</li>
+<li><strong>Global search</strong>: community-level routing using Louvain clusters.</li>
+</ul>
+<h2 id="why-was-graphrag-developed">Why was GraphRAG developed?</h2>
+<p>Dense-only retrieval can miss relationship structure (e.g., treatment vs cause vs co-occurrence). GraphRAG adds explicit structural signals.</p>
+<h2 id="what-limitation-of-traditional-rag-does-it-solve_1">What limitation of traditional RAG does it solve?</h2>
+<p>Traditional RAG lacks relational context and concept topology. GraphRAG provides explicit biomedical concept linking and community-level context.</p>
+<h2 id="architectureworkflow-diagram">Architecture/workflow diagram</h2>
+<pre><code class="language-mermaid">flowchart TD
+    A[Normalized records] --&gt; B[Chunking]
+    B --&gt; C[Embedding]
+    C --&gt; D[Chroma indexing]
+    B --&gt; E[Relation extraction]
+    E --&gt; F[Entity graph]
+    F --&gt; G[Louvain communities]
+    D --&gt; H[Vector retrieval]
+    F --&gt; I[Graph expansion]
+    G --&gt; J[Community summaries]
+    H --&gt; K[RRF fusion + retrieval outputs]
+    I --&gt; K
+    J --&gt; K
+</code></pre>
+<h2 id="how-it-appears-in-code_1">How it appears in code</h2>
+<p>Core modules:
+- Chroma indexing/search: <code>src/chroma_retriever.py</code>
+  - <code>index_chunks_to_chromadb</code> (57-84)
+  - <code>vector_search</code> (93-122)
+  - <code>entity_search</code> (124-155)
+  - <code>reciprocal_rank_fusion</code> (157-185)
+- Graph build/search: <code>src/graph_builder.py</code>
+  - <code>extract_relationship_edges</code> (276-313)
+  - <code>build_entity_graph</code> (64-127)
+  - <code>detect_communities</code> (151-160)
+  - <code>local_graph_expansion</code> (200-233)
+  - <code>rank_communities_for_query</code> (235-261)</p>
+<p>Notebook implementation:
+- <code>notebooks/NB02_Chroma_GraphRAG.py</code></p>
+<h2 id="component-by-component-breakdown_1">Component-by-component breakdown</h2>
+<ol>
+<li>Chunking with entity metadata propagation (<code>src/chunking.py</code> lines 111-147).</li>
+<li>Embedding with Ollama (<code>src/embeddings.py</code> lines 34-149).</li>
+<li>Chroma persistence with rich metadata (<code>src/chroma_retriever.py</code> lines 26-36, 57-84).</li>
+<li>Relation extraction heuristics (<code>src/graph_builder.py</code> lines 30-47, 276-313).</li>
+<li>Graph statistics + communities (<code>src/graph_builder.py</code> lines 130-197).</li>
+<li>Retrieval fusion via RRF (<code>src/chroma_retriever.py</code> lines 157-185).</li>
+</ol>
+<h2 id="real-outputs-from-latest-artifacts">Real outputs from latest artifacts</h2>
+<p>Graph stats from <code>outputs/tables/nb02_graph_stats.csv</code>:
+- Nodes: <code>15,454</code>
+- Edges: <code>2,191,052</code>
+- Density: <code>0.01835</code>
+- Largest component: <code>15,454</code></p>
+<p>Relation stats from <code>outputs/tables/nb02_relation_stats.csv</code>:
+- Total relation edges extracted: <code>4,342,106</code>
+- Relation labels include <code>associated_with</code>, <code>co_occurs_with</code>, <code>inhibits</code>, <code>causes</code>, <code>activates</code>, <code>treats</code></p>
+<p>Community summary from <code>outputs/tables/nb02_community_summary.csv</code>:
+- Largest communities: sizes <code>4,809</code>, <code>3,984</code>, <code>3,844</code>, <code>2,739</code></p>
+<h2 id="why-chromadb-here">Why ChromaDB here?</h2>
+<ul>
+<li>Local persistence, fast iteration, low ops overhead.</li>
+<li>Straightforward metadata retrieval for tutorial transparency.</li>
+</ul>
+<h2 id="why-not-faissweaviateqdrant-for-section-a">Why not FAISS/Weaviate/Qdrant for Section A?</h2>
+<ul>
+<li>FAISS: strong ANN core but extra metadata/persistence plumbing required.</li>
+<li>Weaviate/Qdrant: strong production choices but add service runtime overhead for a local-first chapter.</li>
+</ul>
+<h2 id="when-should-this-be-used">When should this be used?</h2>
+<ul>
+<li>Early-stage prototyping with deep retrieval introspection.</li>
+<li>Scenarios where graph-aware biomedical expansion is required.</li>
+</ul>
+<h2 id="advantages_1">Advantages</h2>
+<ul>
+<li>Explainable concept-level retrieval behavior.</li>
+<li>Strong debugging visibility (graph stats, communities, relation labels).</li>
+<li>Reproducible local baseline before managed deployment.</li>
+</ul>
+<h2 id="disadvantages_1">Disadvantages</h2>
+<ul>
+<li>Heuristic relation extraction has precision limits.</li>
+<li>Full-collection metadata scans can be expensive at scale.</li>
+</ul>
+<h2 id="comparison-vs-standard-dense-rag">Comparison vs standard dense RAG</h2>
+<ul>
+<li>Standard dense RAG: semantic similarity only.</li>
+<li>Chroma GraphRAG: semantic + concept graph + community context.</li>
+</ul>
+<h2 id="production-considerations_2">Production considerations</h2>
+<ul>
+<li>Replace heuristic relation extraction with stronger relation models.</li>
+<li>Track graph drift and refresh schedule.</li>
+<li>Add retrieval latency/error telemetry around vector and graph channels.</li>
+</ul>
+<h2 id="conclusion_2">Conclusion</h2>
+<p>This chapter establishes the structural retrieval baseline the rest of the system builds upon.</p>
+<hr>
+<h1 id="03-pinecone-graphrag">03. Pinecone GraphRAG</h1>
+<h2 id="what-is-this-technique_2">What is this technique?</h2>
+<p>This chapter ports the GraphRAG retrieval workflow to Pinecone and compares it directly with Chroma on the same corpus/chunks/queries.</p>
+<h2 id="definition-and-core-concepts_2">Definition and core concepts</h2>
+<ul>
+<li><strong>Managed vector backend</strong>: Pinecone serves vectors over a hosted service.</li>
+<li><strong>Apples-to-apples benchmark</strong>: same embeddings, same chunk metadata, same graph expansion logic.</li>
+<li><strong>Cost proxy</strong>: operation counts and vector footprint used as auditable cost drivers.</li>
+</ul>
+<h2 id="why-was-this-developed_1">Why was this developed?</h2>
+<p>A local baseline is useful, but production systems often require managed scaling, isolation, and cloud-native operations.</p>
+<h2 id="what-limitation-of-traditional-single-backend-rag-does-it-solve">What limitation of traditional single-backend RAG does it solve?</h2>
+<p>Single backend choices hide operational tradeoffs. This comparison exposes latency, complexity, and scale posture differences.</p>
+<h2 id="architecture-diagram_1">Architecture diagram</h2>
+<pre><code class="language-mermaid">flowchart LR
+    A[Shared chunks + embeddings] --&gt; B[Chroma path]
+    A --&gt; C[Pinecone path]
+    D[Shared graph expansion] --&gt; B
+    D --&gt; C
+    B --&gt; E[Metric comparison]
+    C --&gt; E
+</code></pre>
+<h2 id="how-it-appears-in-code_2">How it appears in code</h2>
+<ul>
+<li>Pinecone utilities: <code>src/pinecone_retriever.py</code></li>
+<li><code>create_index</code> (47-63)</li>
+<li><code>index_chunks_to_pinecone</code> (76-114)</li>
+<li><code>query_pinecone</code> (116-153)</li>
+<li><code>pinecone_cost_proxy</code> (155-195)</li>
+<li>Notebook benchmarking logic: <code>notebooks/NB03_Pinecone_GraphRAG.py</code></li>
+</ul>
+<h2 id="component-breakdown">Component breakdown</h2>
+<ol>
+<li>Rehydrate the same artifacts from NB02.</li>
+<li>Index vectors in Pinecone namespace.</li>
+<li>Run matched GraphRAG search path in both backends.</li>
+<li>Compute retrieval metrics and latency distributions.</li>
+<li>Persist comparison tables/charts.</li>
+</ol>
+<h2 id="real-benchmark-outputs">Real benchmark outputs</h2>
+<p>Source files:
+- <code>outputs/metrics/nb03_retrieval_benchmark.json</code>
+- <code>outputs/tables/nb03_chroma_vs_pinecone.csv</code></p>
+<h3 id="latency">Latency</h3>
+<ul>
+<li>Chroma: p50 <code>5973ms</code>, p95 <code>6673ms</code>, p99 <code>6773ms</code></li>
+<li>Pinecone: p50 <code>9658ms</code>, p95 <code>11889ms</code>, p99 <code>14087ms</code></li>
+</ul>
+<h3 id="retrieval-quality-snapshot">Retrieval quality snapshot</h3>
+<ul>
+<li>Chroma (<code>k=8</code>): precision <code>0.0417</code>, recall <code>0.3000</code>, MRR <code>0.2162</code>, NDCG <code>0.2324</code></li>
+<li>Pinecone (<code>k=8</code>): precision <code>0.0708</code>, recall <code>0.5167</code>, MRR <code>0.1879</code>, NDCG <code>0.2722</code></li>
+</ul>
+<h3 id="costscalability-proxy">Cost/scalability proxy</h3>
+<p>From <code>nb03_chroma_vs_pinecone.csv</code>:
+- Chroma cost driver: <code>queries=30, vectors=5098</code>
+- Pinecone cost driver: <code>queries=30, upserts=5098, vectors=5098</code>
+- Complexity scores: Chroma <code>2/5</code>, Pinecone <code>3/5</code>
+- Scalability scores: Chroma <code>3/5</code>, Pinecone <code>5/5</code></p>
+<h2 id="why-pinecone-vs-alternatives-in-this-chapter">Why Pinecone vs alternatives in this chapter?</h2>
+<ul>
+<li>Chosen for managed scaling path and hosted operations.</li>
+<li>Not chosen alternatives in this chapter (self-hosted vector DBs) to keep backend comparison focused and reproducible.</li>
+</ul>
+<h2 id="when-should-this-be-used_1">When should this be used?</h2>
+<ul>
+<li>Production environments requiring managed vector serving.</li>
+<li>Teams optimizing for scaling/ops consistency over local simplicity.</li>
+</ul>
+<h2 id="advantages_2">Advantages</h2>
+<ul>
+<li>Cloud-managed infrastructure and scale readiness.</li>
+<li>Clear index lifecycle APIs.</li>
+</ul>
+<h2 id="disadvantages_2">Disadvantages</h2>
+<ul>
+<li>Higher observed latency in this run vs local Chroma.</li>
+<li>Requires credentials and cloud dependency.</li>
+</ul>
+<h2 id="comparison-against-standard-rag">Comparison against standard RAG</h2>
+<p>Standard RAG often fixes one backend and ignores operational tradeoffs. This chapter makes those tradeoffs measurable.</p>
+<h2 id="production-considerations_3">Production considerations</h2>
+<ul>
+<li>Enforce index lifecycle cleanup for spend control.</li>
+<li>Monitor tail latency and retry behavior.</li>
+<li>Keep metadata schema consistent across stores.</li>
+</ul>
+<h2 id="conclusion_3">Conclusion</h2>
+<p>Pinecone integration is fully implemented and benchmarked against Chroma with real artifacts, enabling informed backend decisions.</p>
+<hr>
+<h1 id="04-agentic-graphrag-langgraph">04. Agentic GraphRAG (LangGraph)</h1>
+<h2 id="what-is-this-technique_3">What is this technique?</h2>
+<p>Agentic GraphRAG uses an explicit state graph (LangGraph) to route queries through retrieval, grading, fallback, graph traversal, answer generation, and hallucination checks.</p>
+<h2 id="definition-and-core-concepts_3">Definition and core concepts</h2>
+<ul>
+<li><strong>State machine RAG</strong>: deterministic node graph over mutable state.</li>
+<li><strong>Routing gates</strong>: branches controlled by retrieval and hallucination quality.</li>
+<li><strong>Traceability</strong>: every node transition is recorded in <code>trace</code>.</li>
+</ul>
+<h2 id="why-was-this-developed_2">Why was this developed?</h2>
+<p>Linear pipelines cannot adapt when retrieval is weak. Agentic control enables controlled fallback and retry logic.</p>
+<h2 id="what-limitation-of-traditional-rag-does-it-solve_2">What limitation of traditional RAG does it solve?</h2>
+<p>Traditional RAG has weak conditional behavior and limited observability. Agentic GraphRAG adds explicit branch semantics and replayable traces.</p>
+<h2 id="workflow-diagram">Workflow diagram</h2>
+<pre><code class="language-mermaid">flowchart TD
+    A[Query] --&gt; B[Retrieval]
+    B --&gt; C[Retrieval Grader]
+    C --&gt;|Low score| D[Web Search]
+    C --&gt;|Good score| E[Graph Traversal]
+    D --&gt; E
+    E --&gt; F[Context Expansion]
+    F --&gt; G[Answer Generation]
+    G --&gt; H[Hallucination Detection]
+    H --&gt;|Retry once| G
+    H --&gt; I[Final Response]
+</code></pre>
+<h2 id="how-it-appears-in-code_3">How it appears in code</h2>
+<p><code>src/agentic_rag.py</code>:
+- State definition: <code>AgentState</code> (28-45)
+- Workflow builder: <code>build_agentic_workflow</code> (182-345)
+- Node implementations:
+  - retrieval (185-190)
+  - retrieval grader (192-197)
+  - web fallback (199-202)
+  - graph traversal (204-212)
+  - context expansion (214-243)
+  - answer generation (245-278)
+  - hallucination detection (280-295)
+  - finalize (297-300)</p>
+<p>Notebook:
+- <code>notebooks/NB04_Agentic_GraphRAG.py</code></p>
+<h2 id="component-breakdown_1">Component breakdown</h2>
+<ol>
+<li>Retrieve top-k dense docs from Chroma.</li>
+<li>Judge retrieval quality (<code>settings.retrieval_grade_threshold</code>).</li>
+<li>Route to web fallback if low quality.</li>
+<li>Expand graph neighborhoods + communities.</li>
+<li>Generate grounded answer with citations.</li>
+<li>Judge groundedness/hallucination and optionally retry once.</li>
+</ol>
+<h2 id="real-outputs">Real outputs</h2>
+<ul>
+<li>Workflow Mermaid artifact: <code>outputs/figures/nb04_agent_workflow_mermaid.md</code></li>
+<li>Route summary: <code>outputs/tables/nb04_agentic_route_summary.csv</code></li>
+<li>Demo state payload: <code>outputs/metrics/nb04_agentic_demo.json</code></li>
+</ul>
+<p>From <code>nb04_agentic_route_summary.csv</code>:
+- Example query route: <code>graph_traversal</code>
+- Retrieval score: <code>0.85</code>
+- Hallucination score: <code>0.95</code></p>
+<h2 id="why-langgraph-over-simpler-chaining">Why LangGraph over simpler chaining?</h2>
+<ul>
+<li>Explicit, inspectable state graph.</li>
+<li>Safer branch control than ad-hoc conditionals.</li>
+<li>Better for audit and debugging.</li>
+</ul>
+<h2 id="when-should-this-be-used_2">When should this be used?</h2>
+<ul>
+<li>Biomedical workloads with variable retrieval quality.</li>
+<li>Systems requiring explainable control-flow for safety review.</li>
+</ul>
+<h2 id="advantages_3">Advantages</h2>
+<ul>
+<li>Strong observability via trace paths.</li>
+<li>Controlled fallback/retry behavior.</li>
+<li>Clear extension path for additional tools.</li>
+</ul>
+<h2 id="disadvantages_3">Disadvantages</h2>
+<ul>
+<li>More orchestration complexity.</li>
+<li>Extra judge calls increase runtime cost and latency.</li>
+</ul>
+<h2 id="comparison-against-other-variants">Comparison against other variants</h2>
+<ul>
+<li>Standard RAG: fastest, least adaptive.</li>
+<li>Hybrid RAG: better retrieval but no full control graph.</li>
+<li>CRAG: stricter corrective policy specialization.</li>
+<li>Agentic GraphRAG: broader orchestration with graph-aware context.</li>
+</ul>
+<h2 id="production-considerations_4">Production considerations</h2>
+<ul>
+<li>Limit fallback domains for medical safety.</li>
+<li>Add node-level latency and failure telemetry.</li>
+<li>Enforce retry caps and timeout budgets.</li>
+</ul>
+<h2 id="conclusion_4">Conclusion</h2>
+<p>Agentic GraphRAG provides the control-plane layer for reliability and explainability on top of retrieval and graph evidence.</p>
+<hr>
+<h1 id="05-evaluation-framework">05. Evaluation Framework</h1>
+<h2 id="what-is-this-technique_4">What is this technique?</h2>
+<p>A unified evaluation stack measuring:
+- Retrieval quality
+- Generation quality
+- RAG-specific groundedness quality
+- LLM-as-a-Judge quality axes</p>
+<h2 id="definition-and-core-concepts_4">Definition and core concepts</h2>
+<h3 id="retrieval-metrics">Retrieval metrics</h3>
+<ul>
+<li>Precision@K</li>
+<li>Recall@K</li>
+<li>F1@K</li>
+<li>MRR</li>
+<li>NDCG@K</li>
+</ul>
+<h3 id="generation-metrics">Generation metrics</h3>
+<ul>
+<li>Exact Match</li>
+<li>BLEU</li>
+<li>ROUGE-1/2/L</li>
+<li>METEOR</li>
+<li>BERTScore</li>
+</ul>
+<h3 id="rag-metrics">RAG metrics</h3>
+<ul>
+<li>Faithfulness</li>
+<li>Context Precision</li>
+<li>Context Recall</li>
+<li>Answer Relevancy</li>
+</ul>
+<h3 id="judge-axes-granite418b">Judge axes (granite4.1:8b)</h3>
+<ul>
+<li>Groundedness</li>
+<li>Relevance</li>
+<li>Hallucination (higher = lower hallucination risk in this implementation)</li>
+<li>Completeness</li>
+</ul>
+<h2 id="why-this-framework-was-developed">Why this framework was developed</h2>
+<p>Single metrics can hide failure modes. Biomedical RAG needs layered quality checks because retrieval, answer style, and groundedness can diverge.</p>
+<h2 id="what-limitation-of-traditional-rag-evaluation-does-it-solve">What limitation of traditional RAG evaluation does it solve?</h2>
+<p>Traditional evaluation often measures only lexical overlap. This framework adds retrieval diagnostics and groundedness judgment.</p>
+<h2 id="how-it-appears-in-code_4">How it appears in code</h2>
+<p>Core implementation in <code>src/evaluator.py</code>:
+- retrieval metrics: lines 64-147
+- generation metrics: lines 149-255
+- judge-backed RAG metrics: lines 308-456
+- unified bundle: lines 459-486</p>
+<p>Judge helper module:
+- <code>src/llm_judge.py</code> (<code>grade_retrieval_quality</code>, <code>grade_groundedness</code>)</p>
+<p>Notebook:
+- <code>notebooks/NB05_Evaluation.py</code></p>
+<h2 id="workflow-diagram_1">Workflow diagram</h2>
+<pre><code class="language-mermaid">flowchart TD
+    A[Eval query set] --&gt; B[Retrieval pass]
+    B --&gt; C[Retrieval metrics]
+    A --&gt; D[Generation pass]
+    D --&gt; E[Generation metrics]
+    D --&gt; F[RAG metrics]
+    D --&gt; G[LLM judge axes]
+    C --&gt; H[Unified evaluation bundle]
+    E --&gt; H
+    F --&gt; H
+    G --&gt; H
+</code></pre>
+<h2 id="real-outputs-and-values">Real outputs and values</h2>
+<p>Primary artifacts:
+- <code>outputs/metrics/nb05_evaluation_bundle.json</code>
+- <code>outputs/tables/nb05_metric_summary.csv</code>
+- <code>outputs/tables/nb05_sample_agent_outputs.csv</code></p>
+<p>From latest <code>nb05_evaluation_bundle.json</code>:
+- Retrieval (<code>k=8</code>): precision <code>0.0417</code>, recall <code>0.3000</code>, f1 <code>0.0726</code>, ndcg <code>0.2324</code>, mrr <code>0.2162</code>
+- Generation: exact_match <code>0.0</code>, bleu <code>0.0126</code>, rouge1 <code>0.1420</code>, meteor <code>0.1626</code>
+- RAG: faithfulness <code>0.9458</code>, context_precision <code>0.2307</code>, context_recall <code>0.2167</code>, answer_relevancy <code>0.9833</code>
+- Judge axes: groundedness <code>4.4167</code>, relevance <code>5.0</code>, hallucination <code>5.0</code>, completeness <code>3.75</code></p>
+<h2 id="interpretation-of-observed-metrics">Interpretation of observed metrics</h2>
+<ul>
+<li>Retrieval has room for improvement at high-K precision.</li>
+<li>Lexical generation metrics are modest, which is common in biomedical paraphrastic answers.</li>
+<li>Judge-based groundedness/relevance are relatively strong in this run.</li>
+</ul>
+<h2 id="advantages_4">Advantages</h2>
+<ul>
+<li>Multi-perspective quality measurement.</li>
+<li>Unified bundle for regression tracking.</li>
+<li>Judge + deterministic metrics together reduce blind spots.</li>
+</ul>
+<h2 id="disadvantages_4">Disadvantages</h2>
+<ul>
+<li>Judge metrics add runtime and potential evaluator variance.</li>
+<li>BERTScore can fail/fallback in constrained environments.</li>
+</ul>
+<h2 id="comparison-against-standard-evaluation">Comparison against standard evaluation</h2>
+<ul>
+<li>Standard: often ROUGE/BLEU only.</li>
+<li>This project: retrieval + generation + RAG + judge in one contract.</li>
+</ul>
+<h2 id="production-considerations_5">Production considerations</h2>
+<ul>
+<li>Keep eval set versioned and non-synthetic.</li>
+<li>Track trends per release, not single-point values.</li>
+<li>Add slice-based reporting (rare terms, long-tail diseases, modality-specific queries).</li>
+</ul>
+<h2 id="conclusion_5">Conclusion</h2>
+<p>This framework turns pipeline behavior into measurable, auditable signals needed for iteration and production gating.</p>
+<hr>
+<h1 id="06-hybrid-rag-dense-sparse-biomedical-retrieval">06. Hybrid RAG (Dense + Sparse Biomedical Retrieval)</h1>
+<h2 id="what-is-this-technique_5">What is this technique?</h2>
+<p>Hybrid RAG combines:
+- dense semantic retrieval (<code>qwen3-embedding:4b</code> via Chroma), and
+- sparse lexical retrieval (BM25-style index with biomedical abbreviation expansion)</p>
+<p>then fuses both channels into one ranking.</p>
+<h2 id="definition-and-core-concepts_5">Definition and core concepts</h2>
+<ul>
+<li><strong>Dense retrieval</strong>: semantic nearest-neighbor similarity.</li>
+<li><strong>Sparse retrieval</strong>: lexical term matching and BM25 scoring.</li>
+<li><strong>Fusion</strong>: weighted normalized score merge or RRF.</li>
+</ul>
+<h2 id="why-was-this-developed_3">Why was this developed?</h2>
+<p>Biomedical text has both semantic and exact lexical signals (gene names, abbreviations, biomarkers). Dense-only or sparse-only retrieval misses part of this signal.</p>
+<h2 id="what-limitation-of-traditional-rag-does-it-solve_3">What limitation of traditional RAG does it solve?</h2>
+<p>Traditional dense-only RAG can miss exact biomedical terms; sparse-only can miss paraphrases. Hybrid reduces both failure modes.</p>
+<h2 id="architecture-diagram_2">Architecture diagram</h2>
+<pre><code class="language-mermaid">flowchart LR
+    Q[Biomedical query] --&gt; D[Dense retrieval]
+    Q --&gt; S[Sparse retrieval]
+    D --&gt; F[Fusion]
+    S --&gt; F
+    F --&gt; C[Top-K context]
+</code></pre>
+<h2 id="how-it-appears-in-code_5">How it appears in code</h2>
+<p><code>src/hybrid_retriever.py</code>:
+- Biomedical tokenization: <code>_tokenize</code> (30-33)
+- Abbreviation expansion map: <code>BIOMED_ABBREVIATION_MAP</code> (35-42)
+- Sparse index class: <code>BiomedicalSparseIndex</code> (55-163)
+- Fusion: <code>weighted_score_fusion</code> (165-219)
+- End-to-end search: <code>hybrid_search</code> (221-248)</p>
+<p>Notebook:
+- <code>notebooks/NB06_Hybrid_RAG.py</code></p>
+<h2 id="component-breakdown_2">Component breakdown</h2>
+<ol>
+<li>Build sparse index from chunk text.</li>
+<li>Query dense and sparse channels.</li>
+<li>Fuse via normalized weighted scores (<code>settings.hybrid_dense_weight</code>, <code>settings.hybrid_sparse_weight</code>) or optional RRF.</li>
+<li>Evaluate across retrieval/generation/RAG/judge metrics.</li>
+</ol>
+<h2 id="real-outputs_1">Real outputs</h2>
+<ul>
+<li>Metrics: <code>outputs/metrics/nb06_hybrid_rag_metrics.json</code></li>
+<li>Summary table: <code>outputs/tables/nb06_hybrid_rag_summary.csv</code></li>
+</ul>
+<p>Latest key values:
+- Retrieval (<code>k=8</code>): precision <code>0.0625</code>, recall <code>0.4500</code>, MRR <code>0.3931</code>, NDCG <code>0.4101</code>
+- RAG: faithfulness <code>0.7667</code>, answer_relevancy <code>0.7833</code>
+- Judge retrieval quality sample: <code>0.3</code> (with missing-aspects rationale in metrics JSON)</p>
+<h2 id="interpretation">Interpretation</h2>
+<p>Compared to baseline NB05 retrieval (<code>recall@8=0.3000</code>, <code>MRR=0.2162</code>), hybrid shows higher recall and MRR in this run.</p>
+<h2 id="why-this-design-over-alternatives_1">Why this design over alternatives?</h2>
+<ul>
+<li>Weighted fusion is transparent and tunable.</li>
+<li>RRF remains available when score scales are incomparable.</li>
+</ul>
+<h2 id="when-should-this-be-used_3">When should this be used?</h2>
+<ul>
+<li>Biomedical corpora with abbreviations, acronyms, and exact terminology.</li>
+<li>Systems where dense-only retrieval underperforms on lexical precision.</li>
+</ul>
+<h2 id="advantages_5">Advantages</h2>
+<ul>
+<li>Better lexical-semantic balance.</li>
+<li>Uses existing Chroma infrastructure.</li>
+<li>Simple to inspect and tune.</li>
+</ul>
+<h2 id="disadvantages_5">Disadvantages</h2>
+<ul>
+<li>Extra index and tuning overhead.</li>
+<li>Potential latency increase from dual retrieval channels.</li>
+</ul>
+<h2 id="comparison-against-implemented-variants">Comparison against implemented variants</h2>
+<ul>
+<li>Standard GraphRAG: strong structure, weaker lexical compensation.</li>
+<li>Hybrid: retrieval quality booster layer.</li>
+<li>CRAG: correction layer on top when retrieval still weak.</li>
+</ul>
+<h2 id="production-considerations_6">Production considerations</h2>
+<ul>
+<li>Track query cohorts where sparse contributes most.</li>
+<li>Version and monitor fusion weights.</li>
+<li>Rebuild sparse index when corpus updates.</li>
+</ul>
+<h2 id="conclusion_6">Conclusion</h2>
+<p>Hybrid retrieval is a practical middle-ground improvement before moving to heavier reranking architectures.</p>
+<hr>
+<h1 id="07-corrective-rag-crag">07. Corrective RAG (CRAG)</h1>
+<h2 id="what-is-this-technique_6">What is this technique?</h2>
+<p>CRAG is a quality-gated RAG controller that:
+1. grades retrieval quality,
+2. corrects the query when quality is low,
+3. falls back to web evidence when retries are exhausted,
+4. verifies groundedness before finalizing.</p>
+<h2 id="definition-and-core-concepts_6">Definition and core concepts</h2>
+<ul>
+<li><strong>Retrieval grader</strong>: judge-based quality score.</li>
+<li><strong>Corrective loop</strong>: bounded query rewrite + re-retrieval attempts.</li>
+<li><strong>Fallback path</strong>: external evidence retrieval.</li>
+<li><strong>Verification gate</strong>: groundedness check after generation.</li>
+</ul>
+<h2 id="why-was-this-developed_4">Why was this developed?</h2>
+<p>In biomedical QA, weak retrieval can silently propagate into hallucinated outputs. CRAG makes retrieval quality a first-class control signal.</p>
+<h2 id="what-limitation-of-traditional-rag-does-it-solve_4">What limitation of traditional RAG does it solve?</h2>
+<p>Traditional RAG often has no explicit correction policy when retrieval is poor. CRAG introduces deterministic routing and bounded recovery behavior.</p>
+<h2 id="crag-workflow-diagram">CRAG workflow diagram</h2>
+<pre><code class="language-mermaid">flowchart TD
+    A[Query] --&gt; B[Hybrid retrieval]
+    B --&gt; C[Retrieval grader]
+    C --&gt;|Accept| D[Context expansion]
+    C --&gt;|Correct| E[Query rewrite]
+    E --&gt; B
+    C --&gt;|Fallback| F[Web fallback]
+    F --&gt; D
+    D --&gt; G[Answer generation]
+    G --&gt; H[Grounding verification]
+    H --&gt;|Grounded| I[Finalize]
+    H --&gt;|Not grounded (bounded)| F
+</code></pre>
+<h2 id="how-it-appears-in-code_6">How it appears in code</h2>
+<p><code>src/crag_pipeline.py</code>:
+- State and resources: <code>CRAGState</code>, <code>CRAGResources</code> (20-48)
+- Query rewrite: <code>_rewrite_query_with_llm</code> (72-100)
+- Workflow assembly: <code>build_crag_workflow</code> (102-267)
+- Run helpers: <code>run_crag_query</code>, <code>run_crag_batch</code> (269-298)</p>
+<p>Dependencies:
+- Hybrid retrieval from <code>src/hybrid_retriever.py</code>
+- Judge grading from <code>src/llm_judge.py</code></p>
+<p>Notebook:
+- <code>notebooks/NB07_CRAG.py</code></p>
+<h2 id="component-by-component-breakdown_2">Component-by-component breakdown</h2>
+<ol>
+<li>Retrieve via hybrid dense+sparse channel.</li>
+<li>Grade retrieval quality (<code>retrieval_quality</code> + missing aspects).</li>
+<li>Route to accept/correct/fallback.</li>
+<li>Build context and generate answer.</li>
+<li>Verify groundedness; optionally one fallback retry.</li>
+<li>Persist route traces.</li>
+</ol>
+<h2 id="real-outputs_2">Real outputs</h2>
+<ul>
+<li>Metrics: <code>outputs/metrics/nb07_crag_metrics.json</code></li>
+<li>Route table: <code>outputs/tables/nb07_crag_route_summary.csv</code></li>
+</ul>
+<p>Latest key values:
+- Retrieval (<code>k=8</code>): precision <code>0.0781</code>, recall <code>0.3750</code>, MRR <code>0.3125</code>, NDCG <code>0.3314</code>
+- RAG: faithfulness <code>0.8938</code>, answer_relevancy <code>0.9813</code></p>
+<p>Route examples from <code>nb07_crag_route_summary.csv</code>:
+- Diabetes query: direct finalize route, no corrections.
+- KRAS pancreatic query: 2 query corrections + web fallback + verify retry before finalize.</p>
+<h2 id="why-crag-over-simpler-alternatives">Why CRAG over simpler alternatives?</h2>
+<ul>
+<li>Better reliability than one-pass RAG.</li>
+<li>More auditable than ad-hoc retries.</li>
+</ul>
+<h2 id="when-should-this-be-used_4">When should this be used?</h2>
+<ul>
+<li>High-risk domains needing explicit fallback/verification behavior.</li>
+<li>Environments where retrieval quality varies significantly by query type.</li>
+</ul>
+<h2 id="advantages_6">Advantages</h2>
+<ul>
+<li>Transparent and bounded correction policy.</li>
+<li>Strong traceability for postmortem/debug.</li>
+</ul>
+<h2 id="disadvantages_6">Disadvantages</h2>
+<ul>
+<li>Increased latency and model-call cost.</li>
+<li>Requires threshold tuning (<code>crag_acceptance_threshold</code>, <code>crag_max_corrections</code>).</li>
+</ul>
+<h2 id="comparison-against-other-implemented-variants">Comparison against other implemented variants</h2>
+<ul>
+<li>Hybrid improves retrieval quality.</li>
+<li>CRAG improves reliability when retrieval is still weak.</li>
+<li>Agentic GraphRAG offers broader orchestration; CRAG is stricter corrective policy.</li>
+</ul>
+<h2 id="production-considerations_7">Production considerations</h2>
+<ul>
+<li>Monitor route frequencies (<code>accept</code>, <code>correct</code>, <code>web_fallback</code>).</li>
+<li>Keep correction and verification limits bounded.</li>
+<li>Restrict fallback sources for medical safety requirements.</li>
+</ul>
+<h2 id="conclusion_7">Conclusion</h2>
+<p>CRAG provides a reliability control plane that is explicit, measurable, and suitable for medically grounded QA pipelines.</p>
+<hr>
+<h1 id="08-multimodal-rag-ocr-tables">08. Multimodal RAG (OCR + Tables)</h1>
+<h2 id="what-is-this-technique_7">What is this technique?</h2>
+<p>Multimodal RAG extends text RAG by converting images and tables into retrievable text evidence.</p>
+<p>In this project:
+- image evidence is extracted via <code>glm-ocr</code> (CLI-first with fallback),
+- table evidence is converted to structured narrative text,
+- all evidence is indexed in Chroma and evaluated like other RAG variants.</p>
+<h2 id="definition-and-core-concepts_7">Definition and core concepts</h2>
+<ul>
+<li><strong>Multimodal document</strong>: text extracted from image/table with provenance metadata.</li>
+<li><strong>Multimodal chunk</strong>: retrievable chunk from extracted evidence.</li>
+<li><strong>Provenance</strong>: source path, modality, backend, model recorded in metadata.</li>
+</ul>
+<h2 id="why-was-this-developed_5">Why was this developed?</h2>
+<p>Biomedical findings are often in plots and tables, not only prose. Text-only RAG can miss this evidence.</p>
+<h2 id="what-limitation-of-traditional-rag-does-it-solve_5">What limitation of traditional RAG does it solve?</h2>
+<p>Traditional RAG ignores non-text evidence by default. Multimodal ingestion captures chart/table signals as retrieval context.</p>
+<h2 id="architecture-diagram_3">Architecture diagram</h2>
+<pre><code class="language-mermaid">flowchart LR
+    I[Biomedical images] --&gt; O[OCR extraction]
+    T[Biomedical tables] --&gt; P[Table-to-text parser]
+    O --&gt; M[Multimodal documents]
+    P --&gt; M
+    M --&gt; C[Chunking]
+    C --&gt; E[Embedding]
+    E --&gt; V[Chroma multimodal collection]
+    V --&gt; R[Multimodal retrieval]
+</code></pre>
+<h2 id="how-it-appears-in-code_7">How it appears in code</h2>
+<ul>
+<li>Asset acquisition: <code>src/multimodal_assets_pmc.py</code></li>
+<li>fetches real open biomedical/health datasets and builds assets (285-348)</li>
+<li>OCR and multimodal ingestion: <code>src/multimodal_rag.py</code></li>
+<li>OCR wrapper: <code>extract_text_with_glm_ocr_with_backend</code> (89-164)</li>
+<li>table parser: <code>table_to_biomedical_text</code> (185-224)</li>
+<li>document builder: <code>build_multimodal_documents</code> (227-297)</li>
+<li>indexing/search: <code>index_multimodal_chunks_to_chromadb</code> (336-362), <code>multimodal_vector_search</code> (364-391)</li>
+</ul>
+<p>Notebook:
+- <code>notebooks/NB08_Multimodal_RAG.py</code></p>
+<h2 id="component-breakdown_3">Component breakdown</h2>
+<ol>
+<li>Fetch/build multimodal assets and manifest.</li>
+<li>OCR image assets, parse table assets.</li>
+<li>Build multimodal docs and chunks.</li>
+<li>Index in dedicated multimodal collection.</li>
+<li>Run retrieval/generation/RAG/judge evaluation.</li>
+</ol>
+<h2 id="real-outputs_3">Real outputs</h2>
+<ul>
+<li>Metrics: <code>outputs/metrics/nb08_multimodal_rag_metrics.json</code></li>
+<li>Table summary: <code>outputs/tables/nb08_multimodal_rag_summary.csv</code></li>
+</ul>
+<p>Latest key values:
+- Retrieval (<code>k=8</code>): precision <code>0.1250</code>, recall <code>1.0000</code>, MRR <code>1.0000</code>, NDCG <code>1.0000</code>
+- Generation: BLEU <code>0.0184</code>, ROUGE-1 <code>0.1591</code>, METEOR <code>0.2612</code>
+- RAG: faithfulness <code>0.8875</code>, answer_relevancy <code>0.9375</code>
+- Asset counts: images <code>5</code>, tables <code>3</code>, documents <code>8</code>, chunks <code>8</code>, eval queries <code>8</code></p>
+<h2 id="why-this-design-vs-alternatives">Why this design vs alternatives?</h2>
+<ul>
+<li>OCR+table conversion is transparent and auditable.</li>
+<li>It integrates with existing text retrieval stack without replacing infrastructure.</li>
+</ul>
+<h2 id="when-should-this-be-used_5">When should this be used?</h2>
+<ul>
+<li>Chart-heavy/table-heavy biomedical QA tasks.</li>
+<li>Use cases requiring numeric trend/context evidence.</li>
+</ul>
+<h2 id="advantages_7">Advantages</h2>
+<ul>
+<li>Brings visual/tabular evidence into standard RAG pipeline.</li>
+<li>Maintains provenance and retrieval traceability.</li>
+</ul>
+<h2 id="disadvantages_7">Disadvantages</h2>
+<ul>
+<li>OCR noise and preprocessing complexity.</li>
+<li>Quality depends on image/table quality and parsing robustness.</li>
+</ul>
+<h2 id="comparison-against-other-variants_1">Comparison against other variants</h2>
+<ul>
+<li>NB08 provides general multimodal baseline.</li>
+<li>NB09 specializes operational OCR pathway.</li>
+<li>NB10 specializes non-text visual semantics via vision model.</li>
+</ul>
+<h2 id="production-considerations_8">Production considerations</h2>
+<ul>
+<li>Version extracted text with source assets.</li>
+<li>Add OCR quality checks and confidence filters.</li>
+<li>Enforce data governance for sensitive medical assets.</li>
+</ul>
+<h2 id="conclusion_8">Conclusion</h2>
+<p>Multimodal ingestion materially expands available evidence beyond text-only abstracts and improves retrieval coverage in visual/table scenarios.</p>
+<hr>
+<h1 id="09-multimodal-rag-cli-ocr-specialization">09. Multimodal RAG (CLI OCR Specialization)</h1>
+<h2 id="what-is-this-technique_8">What is this technique?</h2>
+<p>This chapter focuses on a <strong>CLI-first OCR operational pattern</strong>:
+- primary path: <code>ollama run glm-ocr</code>
+- fallback path: <code>ollama.chat</code> only on CLI failure</p>
+<p>The goal is operational transparency and reproducibility of OCR execution.</p>
+<h2 id="definition-and-core-concepts_8">Definition and core concepts</h2>
+<ul>
+<li><strong>CLI-first extraction</strong>: OCR executed as subprocess with explicit command and timeout.</li>
+<li><strong>Backend provenance</strong>: each asset stores whether extraction came from CLI or fallback.</li>
+<li><strong>Bounded fallback</strong>: retry-controlled recovery path.</li>
+</ul>
+<h2 id="why-was-this-developed_6">Why was this developed?</h2>
+<p>Shell-driven data pipelines often require explicit commands, logs, and retry policies. CLI-first OCR is easier to audit in those environments.</p>
+<h2 id="what-limitation-of-standard-multimodal-rag-does-it-solve">What limitation of standard multimodal RAG does it solve?</h2>
+<p>API-only extraction can hide operational details. CLI-first execution makes OCR behavior explicit and easier to monitor.</p>
+<h2 id="workflow-diagram_2">Workflow diagram</h2>
+<pre><code class="language-mermaid">flowchart TD
+    A[Image asset] --&gt; B[Build ollama run command]
+    B --&gt; C[Run subprocess with timeout]
+    C --&gt;|Success| D[Use CLI text]
+    C --&gt;|Fail| E[Fallback to ollama.chat]
+    E --&gt; F[Use fallback text]
+    D --&gt; G[Multimodal corpus]
+    F --&gt; G
+</code></pre>
+<h2 id="how-it-appears-in-code_8">How it appears in code</h2>
+<p><code>src/multimodal_rag.py</code>:
+- CLI command builder: <code>_glm_ocr_cli_command</code> (72-86)
+- CLI + fallback executor: <code>extract_text_with_glm_ocr_with_backend</code> (89-164)
+- wrapper: <code>extract_text_with_glm_ocr</code> (167-182)</p>
+<p>Notebook:
+- <code>notebooks/NB09_Multimodal_RAG_OCR_CLI.py</code></p>
+<h2 id="component-breakdown_4">Component breakdown</h2>
+<ol>
+<li>Build deterministic <code>ollama run</code> command.</li>
+<li>Execute with timeout and return-code checks.</li>
+<li>Route to fallback only when needed.</li>
+<li>Persist backend metadata with each multimodal document.</li>
+</ol>
+<h2 id="real-outputs_4">Real outputs</h2>
+<ul>
+<li>Metrics: <code>outputs/metrics/nb09_multimodal_ocr_cli_metrics.json</code></li>
+<li>Summary table: <code>outputs/tables/nb09_multimodal_ocr_cli_summary.csv</code></li>
+</ul>
+<p>Latest key values:
+- Retrieval (<code>k=8</code>): precision <code>0.1250</code>, recall <code>1.0000</code>, MRR <code>1.0000</code>, NDCG <code>1.0000</code>
+- RAG: faithfulness <code>1.0000</code>, answer_relevancy <code>1.0000</code>
+- Judge axes: groundedness/relevance/hallucination/completeness all <code>5.0</code>
+- Config notes recorded in artifact:
+  - <code>ocr_model=glm-ocr</code>
+  - <code>ocr_cli_timeout_seconds=120</code>
+  - <code>ocr_cli_allow_fallback=true</code></p>
+<h2 id="why-this-design-over-alternatives_2">Why this design over alternatives?</h2>
+<ul>
+<li>Explicit subprocess behavior is easier to debug than opaque API-only behavior.</li>
+<li>Fallback preserves robustness without making fallback the default path.</li>
+</ul>
+<h2 id="when-should-this-be-used_6">When should this be used?</h2>
+<ul>
+<li>Shell-oriented ETL pipelines.</li>
+<li>Teams requiring command-level OCR auditability.</li>
+</ul>
+<h2 id="advantages_8">Advantages</h2>
+<ul>
+<li>Strong operational visibility.</li>
+<li>Controlled failure/recovery behavior.</li>
+</ul>
+<h2 id="disadvantages_8">Disadvantages</h2>
+<ul>
+<li>More subprocess orchestration complexity.</li>
+<li>Requires careful timeout and retry policy tuning.</li>
+</ul>
+<h2 id="comparison-with-other-multimodal-variants">Comparison with other multimodal variants</h2>
+<ul>
+<li>NB08: broader multimodal baseline.</li>
+<li>NB09: operational OCR reliability focus.</li>
+<li>NB10: vision semantics focus beyond OCR text extraction.</li>
+</ul>
+<h2 id="production-considerations_9">Production considerations</h2>
+<ul>
+<li>Log per-asset backend route (<code>ollama_run</code> vs fallback).</li>
+<li>Track timeout/failure rates as quality signals.</li>
+<li>Keep OCR model/version pinned for reproducibility.</li>
+</ul>
+<h2 id="conclusion_9">Conclusion</h2>
+<p>CLI-first OCR provides a practical and auditable multimodal ingestion mode for production-like pipelines.</p>
+<hr>
+<h1 id="10-multimodal-rag-vision-with-qwen354b">10. Multimodal RAG (Vision with <code>qwen3.5:4b</code>)</h1>
+<h2 id="what-is-this-technique_9">What is this technique?</h2>
+<p>A second multimodal pipeline that extracts biomedical evidence from images using a vision model (<code>qwen3.5:4b</code>) instead of OCR-only extraction.</p>
+<h2 id="definition-and-core-concepts_9">Definition and core concepts</h2>
+<ul>
+<li><strong>Vision extraction</strong>: model interprets visual structure and trends, not only visible text.</li>
+<li><strong>Vision-derived evidence</strong>: output is converted to retrievable text chunks.</li>
+<li><strong>Collection isolation</strong>: vision outputs are indexed in a dedicated collection for clean comparison.</li>
+</ul>
+<h2 id="why-was-this-developed_7">Why was this developed?</h2>
+<p>OCR captures visible text but can miss chart semantics (trend direction, visual progression, subgroup patterns).</p>
+<h2 id="what-limitation-of-traditionalmultimodal-ocr-only-rag-does-it-solve">What limitation of traditional/multimodal OCR-only RAG does it solve?</h2>
+<p>It captures non-verbatim visual meaning that text-only and OCR-only paths may miss.</p>
+<h2 id="workflow-diagram_3">Workflow diagram</h2>
+<pre><code class="language-mermaid">flowchart TD
+    A[Image assets] --&gt; B[Vision extraction qwen3.5:4b]
+    T[Table assets] --&gt; C[Table-to-text]
+    B --&gt; D[Vision multimodal docs]
+    C --&gt; D
+    D --&gt; E[Chunk + embed]
+    E --&gt; F[Chroma: medical_multimodal_qwen_vision]
+    F --&gt; G[Retrieval + evaluation]
+</code></pre>
+<h2 id="how-it-appears-in-code_9">How it appears in code</h2>
+<p><code>src/multimodal_vision_rag.py</code>:
+- Vision extraction call: <code>extract_vision_evidence_with_qwen</code> (35-84)
+- Document builder: <code>build_vision_multimodal_documents</code> (87-144)
+- Retrieval wrapper: <code>vision_multimodal_search</code> (174-183)</p>
+<p>Notebook:
+- <code>notebooks/NB10_Multimodal_RAG_Vision_Qwen.py</code></p>
+<h2 id="component-breakdown_5">Component breakdown</h2>
+<ol>
+<li>Discover assets from <code>data/multimodal/images</code> and <code>data/multimodal/tables</code>.</li>
+<li>Extract image semantics via <code>ollama.chat</code> using vision model.</li>
+<li>Convert tables to text.</li>
+<li>Chunk/index in dedicated vision collection.</li>
+<li>Evaluate with same metric families as other chapters.</li>
+</ol>
+<h2 id="real-outputs_5">Real outputs</h2>
+<ul>
+<li>Metrics: <code>outputs/metrics/nb10_multimodal_qwen_vision_metrics.json</code></li>
+<li>Summary: <code>outputs/tables/nb10_multimodal_qwen_vision_summary.csv</code></li>
+</ul>
+<p>Latest key values:
+- Retrieval (<code>k=8</code>): precision <code>0.1667</code>, recall <code>1.0000</code>, MRR <code>1.0000</code>, NDCG <code>1.0000</code>
+- RAG: faithfulness <code>0.9875</code>, context_recall <code>1.0000</code>, answer_relevancy <code>0.9750</code>
+- Judge axes: groundedness <code>4.75</code>, relevance <code>5.0</code>, hallucination <code>5.0</code>, completeness <code>5.0</code></p>
+<h2 id="why-this-design-over-alternatives_3">Why this design over alternatives?</h2>
+<ul>
+<li>Keeps multimodal architecture consistent while swapping only extraction strategy.</li>
+<li>Enables direct OCR-vs-vision comparison without changing downstream evaluation.</li>
+</ul>
+<h2 id="when-should-this-be-used_7">When should this be used?</h2>
+<ul>
+<li>Figure-heavy medical tasks where trend/shape interpretation matters.</li>
+<li>Cases where OCR text is sparse but visual pattern is strong.</li>
+</ul>
+<h2 id="advantages_9">Advantages</h2>
+<ul>
+<li>Captures non-textual visual semantics.</li>
+<li>Shares same retrieval/evaluation contracts with other variants.</li>
+</ul>
+<h2 id="disadvantages_9">Disadvantages</h2>
+<ul>
+<li>More prompt-sensitive than OCR.</li>
+<li>Potentially higher inference cost and latency.</li>
+</ul>
+<h2 id="comparison-with-implemented-variants">Comparison with implemented variants</h2>
+<ul>
+<li>NB09 excels in operational OCR traceability.</li>
+<li>NB10 excels when chart semantics matter beyond visible text.</li>
+</ul>
+<h2 id="production-considerations_10">Production considerations</h2>
+<ul>
+<li>Version prompts and extraction templates.</li>
+<li>Monitor vision extraction drift and hallucination risk.</li>
+<li>Keep separate benchmark suites for OCR and vision paths.</li>
+</ul>
+<h2 id="conclusion_10">Conclusion</h2>
+<p>The vision pathway broadens evidence capture for visual biomedical signals and complements OCR-based multimodal retrieval.</p>
+<hr>
+<h1 id="11-selective-fine-tuning-unsloth-peft-trl">11. Selective Fine-Tuning (Unsloth + PEFT + TRL)</h1>
+<h2 id="what-is-this-technique_10">What is this technique?</h2>
+<p>Selective fine-tuning is an optional quality-improvement path that adapts the generator model using parameter-efficient adapters instead of full model retraining.</p>
+<h2 id="definition-and-core-concepts_10">Definition and core concepts</h2>
+<ul>
+<li><strong>Unsloth</strong>: efficient model-loading/training runtime for adapter workflows.</li>
+<li><strong>PEFT (LoRA)</strong>: train small adapter parameters while keeping base model mostly frozen.</li>
+<li><strong>TRL (SFTTrainer)</strong>: standardized supervised fine-tuning trainer loop.</li>
+</ul>
+<h2 id="why-was-this-developed_8">Why was this developed?</h2>
+<p>Full-model fine-tuning is expensive and operationally heavy. This stack exists to make adaptation cheaper and more practical.</p>
+<h2 id="what-limitation-of-traditional-rag-does-it-solve_6">What limitation of traditional RAG does it solve?</h2>
+<p>Even with strong retrieval, generation style and policy adherence may still be weak. Selective fine-tuning targets generator behavior without redesigning retrieval architecture.</p>
+<h2 id="why-these-tools-were-used-in-this-project">Why these tools were used in this project</h2>
+<ul>
+<li>Unsloth: selected as preferred efficient path when compatible.</li>
+<li>PEFT: required for adapter-based fine-tuning (lower compute/memory than full fine-tune).</li>
+<li>TRL: used for trainer abstraction and reproducible SFT config.</li>
+</ul>
+<h2 id="where-they-are-used-in-code">Where they are used in code</h2>
+<ul>
+<li>Dataset construction: <code>src/finetune_data.py</code></li>
+<li><code>build_biomedical_sft_examples</code> (56-111)</li>
+<li><code>persist_sft_jsonl</code> (149-187)</li>
+<li>Training utilities: <code>src/finetune_unsloth.py</code></li>
+<li>stack checks: <code>finetune_stack_status</code> (21-25)</li>
+<li>Unsloth path: <code>create_unsloth_lora_model</code> (114-143)</li>
+<li>PEFT fallback: <code>create_peft_lora_model_fallback</code> (145-184)</li>
+<li>TRL trainer factory: <code>create_sft_trainer</code> (201-283)</li>
+</ul>
+<p>Notebook implementation:
+- <code>notebooks/NB11_Selective_Finetuning_Unsloth_PEFT_TRL.py</code></p>
+<h2 id="workflow-diagram_4">Workflow diagram</h2>
+<pre><code class="language-mermaid">flowchart TD
+    A[Real eval queries/chunks] --&gt; B[Build SFT examples]
+    B --&gt; C[Persist train/eval JSONL]
+    C --&gt; D[Load model + inject LoRA]
+    D --&gt; E[TRL SFTTrainer]
+    E --&gt; F[Save adapters + Modelfile]
+    F --&gt; G[Compare baseline vs finetuned]
+</code></pre>
+<h2 id="what-changed-because-of-this-implementation">What changed because of this implementation</h2>
+<ul>
+<li>Added an optional end-to-end fine-tuning path without modifying baseline retrieval/agentic pipelines.</li>
+<li>Added SFT dataset and adapter artifact outputs under <code>outputs/finetune/</code>.</li>
+<li>Added NB11 metrics/report schema to keep comparisons consistent with other chapters.</li>
+</ul>
+<h2 id="real-observed-outputs-latest-run">Real observed outputs (latest run)</h2>
+<p>Primary artifact:
+- <code>outputs/metrics/nb11_selective_finetune_metrics.json</code></p>
+<p>Latest values from that file:
+- <code>mode: executed</code>
+- <code>stack.unsloth/peft/trl: true</code>
+- dataset sizes: <code>train=2500</code>, <code>eval=300</code>
+- training config base model: <code>unsloth/llama-3.2-3b-instruct</code>
+- <code>trainer_log_summary.status: failed</code>
+- error: <code>'LlamaAttention' object has no attribute 'apply_qkv'</code>
+- <code>comparison_payload.mode: placeholder</code> (no deltas populated)</p>
+<p>Additional observed artifact state:
+- <code>outputs/finetune/adapters/medresearch-lora/</code> contains adapter files timestamped <strong>June 21, 2026</strong>, with metadata referencing <code>sshleifer/tiny-gpt2</code>.
+- This indicates historical adapter artifacts exist, but the <strong>latest June 22 metrics artifact</strong> reports a failed training backend and no updated comparison deltas.</p>
+<h2 id="how-this-affected-post-run-results">How this affected post-run results</h2>
+<p>From the latest metrics artifact:
+- No reliable baseline-vs-finetuned delta was produced (all delta fields null in <code>comparison_payload</code>).
+- Therefore, no measured quality improvement can be claimed from the latest run.</p>
+<h2 id="performanceefficiencyquality-impact-in-this-run">Performance/efficiency/quality impact in this run</h2>
+<ul>
+<li>Efficiency intent: adapter tuning instead of full-model training.</li>
+<li>Actual latest run outcome: training backend incompatibility, so no post-run quality gain was measured.</li>
+</ul>
+<h2 id="advantages_10">Advantages</h2>
+<ul>
+<li>Keeps fine-tuning optional and isolated.</li>
+<li>Adapter-based path is lower-cost than full model tuning.</li>
+<li>Preserves baseline architecture unchanged.</li>
+</ul>
+<h2 id="disadvantages_10">Disadvantages</h2>
+<ul>
+<li>Compatibility risks across model/runtime combinations.</li>
+<li>Additional lifecycle burden (training infra, adapter governance, regression checks).</li>
+</ul>
+<h2 id="comparison-against-other-implemented-variants_1">Comparison against other implemented variants</h2>
+<ul>
+<li>Hybrid/CRAG/multimodal improve retrieval/context behavior.</li>
+<li>NB11 targets generator adaptation and should be used only after retrieval quality is stable.</li>
+</ul>
+<h2 id="production-considerations_11">Production considerations</h2>
+<ul>
+<li>Treat adapter builds as versioned deployable artifacts.</li>
+<li>Add strict regression gates before replacing baseline generator.</li>
+<li>Keep rollback path to baseline generator always available.</li>
+</ul>
+<h2 id="official-references-used">Official references used</h2>
+<ul>
+<li>Unsloth: https://github.com/unslothai/unsloth</li>
+<li>PEFT: https://huggingface.co/docs/peft/index</li>
+<li>TRL: https://huggingface.co/docs/trl/index</li>
+</ul>
+<h2 id="conclusion_11">Conclusion</h2>
+<p>The selective fine-tuning pipeline is implemented and integrated, but the latest execution artifact records a trainer compatibility failure, so final quality deltas are not available for that run.</p></body></html>

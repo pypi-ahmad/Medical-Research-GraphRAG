@@ -1,0 +1,53 @@
+{
+  "retrieval_metrics": {
+    "precision@1": 0.2,
+    "recall@1": 0.18333333333333332,
+    "f1@1": 0.1888888888888889,
+    "ndcg@1": 0.2,
+    "precision@3": 0.07777777777777778,
+    "recall@3": 0.2,
+    "f1@3": 0.11,
+    "ndcg@3": 0.1973240263049396,
+    "precision@5": 0.05333333333333333,
+    "recall@5": 0.23333333333333334,
+    "f1@5": 0.08571428571428573,
+    "ndcg@5": 0.2102191198794243,
+    "precision@8": 0.041666666666666664,
+    "recall@8": 0.3,
+    "f1@8": 0.07259259259259258,
+    "ndcg@8": 0.23244134210164652,
+    "mrr": 0.21619047619047618
+  },
+  "generation_metrics": {
+    "exact_match": 0.0,
+    "bleu": 0.012602628877764059,
+    "rouge1": 0.14198986027138558,
+    "rouge2": 0.03386984424328282,
+    "rougeL": 0.1000275671434472,
+    "meteor": 0.16261680229955958,
+    "bertscore_precision": 0.0,
+    "bertscore_recall": 0.0,
+    "bertscore_f1": 0.0
+  },
+  "rag_metrics": {
+    "faithfulness": 0.9458333333333332,
+    "context_precision": 0.2306547619047619,
+    "context_recall": 0.21666666666666667,
+    "answer_relevancy": 0.9833333333333334,
+    "judge_groundedness": 4.416666666666667,
+    "judge_relevance": 5.0,
+    "judge_hallucination": 5.0,
+    "judge_completeness": 3.75
+  },
+  "metadata": {
+    "dataset": "bigbio/medmentions",
+    "embedding_model": "qwen3-embedding:4b",
+    "generator_model": "granite4.1:8b",
+    "judge_model": "granite4.1:8b",
+    "historical_outputs_kept": true,
+    "execution_phase_required_for_validation": true,
+    "retrieval_example_count": 30,
+    "generation_example_count": 12,
+    "bertscore_enabled": true
+  }
+}

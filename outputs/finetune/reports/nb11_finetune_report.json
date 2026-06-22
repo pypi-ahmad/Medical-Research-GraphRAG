@@ -1,0 +1,30 @@
+{
+  "mode": "placeholder",
+  "stack_status": {
+    "unsloth": true,
+    "peft": true,
+    "trl": true,
+    "datasets": true,
+    "transformers": true,
+    "accelerate": true
+  },
+  "dataset": {
+    "train_examples": 2500,
+    "eval_examples": 300
+  },
+  "training_metrics": {
+    "loss": null,
+    "eval_loss": null,
+    "steps": null,
+    "tokens_per_second": null,
+    "placeholder_note": "Populate by enabling NB11 training and running the notebook."
+  },
+  "post_run_quality": {
+    "retrieval_metrics_delta": null,
+    "generation_metrics_delta": null,
+    "rag_metrics_delta": null,
+    "judge_metrics_delta": null,
+    "latency_delta_ms": null,
+    "placeholder_note": "Populate after explicit end-to-end execution and evaluation."
+  }
+}
